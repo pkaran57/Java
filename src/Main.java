@@ -9,7 +9,6 @@ import LanguageCore.oopdemo.abstractClass.Shape;
 import LanguageCore.oopdemo.abstractClass.Square;
 import LanguageCore.oopdemo.interfaces.Atorvastatin;
 import LanguageCore.oopdemo.interfaces.GenericDrug;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
