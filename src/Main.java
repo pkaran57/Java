@@ -98,7 +98,7 @@ public class Main {
         bb = (byte) iii; //value will be reduced modulo the target type’s range, i.e. remainder of 9999 / range of byte (2^8 = 256)
         System.out.println("bb is " + bb);
 
-        //Java automatically promotes each byte, short, or char operand to int when evaluating an expression
+        //imp: Java automatically promotes each byte, short, or char operand to int when evaluating an expression
         bb = 50;
         bb = (byte) (bb * bb);       //since both bb's are promoted to ints and the expression returns an int, we need to perform an explicit cast
 
@@ -150,7 +150,7 @@ public class Main {
         int[][] twoDD = new int[3][7];
         for(int i = 0; i < twoDD.length;i++) System.out.println("twoDD[" + i + "].length = " + twoDD[i].length);
 
-        //creating multiple array variables on a single line
+        //imp: creating multiple array variables on a single line
         char[] b,c,d;
         //above statement is same as writing :
         char x[], y[], z[];
@@ -182,7 +182,7 @@ public class Main {
         If it is false, the loop terminates. The iteration expression determines how the loop control variable is
         changed each time the loop iterates.
          */
-        //notice that defining i again below will result in an error since i is already defined above
+        //imp: notice that defining i again below will result in an error since i is already defined above
         for(i = 3; i < 3; i++){
             System.out.println("From for : i is " + i);
         }
