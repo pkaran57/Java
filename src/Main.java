@@ -26,10 +26,10 @@ public class Main {
         //controlStatements();
         //Onenote: OOP [Access modifiers and Packages]
         //oopDemo();
-        exception_handling();
+        //exception_handling();
         //MultiThreading.main();
         //Enumerations.enumDemo();
-        //TypeWrappersAndAutoBoxing();
+        TypeWrappersAndAutoBoxing();
         annotationsDemo();      // has deprecated annotation
     }
 
@@ -350,10 +350,10 @@ public class Main {
         you will need an object representation. For example, you can’t pass a primitive type by
         reference to a method. Also, many of the standard data structures implemented by Java
         operate on objects, which means that you can’t use these data structures to store primitive
-        types. To handle these (and other) situations, Java provides type wrappers, which are classes
-        that encapsulate a primitive type within an object.
+        types. To handle these (and other) situations,
+        imp: Java provides type wrappers, which are classes that encapsulate a primitive type within an object.
 
-        The type wrappers are Double, Float, Long, Integer, Short, Byte, Character, and Boolean
+        The type wrappers are Double, Float, Long, Integer, Short, Byte, Character, and Boolean [all class names]
          */
 
         Integer i1 = new Integer(2);
@@ -364,9 +364,9 @@ public class Main {
         //value contained within the wrapper. All type wrappers have typeValue() methods like the intValue() below
         System.out.println("i1 is " + i1 + " and i2 is " + i2.intValue());
 
-        //The process of encapsulating a value within an object is called boxing. (auto)boxing below:
+        //imp: The process of encapsulating a value within an object/type wrapper is called boxing. (auto)boxing below:
         Integer i3 = 6;
-        //The process of extracting a value from a type wrapper is called unboxing.(auto)unboxing below:
+        //imp: The process of extracting a value from a type wrapper is called unboxing.(auto)unboxing below:
         int i4 = i3;
 
         /*
@@ -375,6 +375,8 @@ public class Main {
         are applied. For example, the following program is perfectly valid:
          */
         double d = i3 / 1.0;
+
+        i3++;  // auto-boxing magic
     }
 
     //annotate annotationsDemo method with methodAnnotation (defined below this method)
