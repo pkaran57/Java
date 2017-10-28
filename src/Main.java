@@ -2,6 +2,7 @@
 // System is a class predefined by java and automatically included. Ex: No need to import anything to use System.out.println()
 // java.lang package is imported implicitly
 
+import LanguageCore.Enumerations;
 import LanguageCore.ExceptionHandling;
 import LanguageCore.MultiThreading;
 import LanguageCore.oopdemo.*;
