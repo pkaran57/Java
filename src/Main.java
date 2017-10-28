@@ -2,6 +2,7 @@
 // System is a class predefined by java and automatically included. Ex: No need to import anything to use System.out.println()
 // java.lang package is imported implicitly
 
+import LanguageCore.Annotations;
 import LanguageCore.Enumerations;
 import LanguageCore.ExceptionHandling;
 import LanguageCore.MultiThreading;
@@ -24,13 +25,13 @@ public class Main {
         //variableAndLiterals();
         //arrays();
         //controlStatements();
-        //Onenote: OOP [Access modifiers and Packages]
+        //Onenote: OOP [Access modifiers and (Packages and CLASSPATH)]
         //oopDemo();
         //exception_handling();
         //MultiThreading.main();
         //Enumerations.enumDemo();
-        TypeWrappersAndAutoBoxing();
-        annotationsDemo();      // has deprecated annotation
+        //TypeWrappersAndAutoBoxing();
+        Annotations.annotationsDemo();
     }
 
     //variables which are member of a class are given default values if not initialized
@@ -377,40 +378,5 @@ public class Main {
         double d = i3 / 1.0;
 
         i3++;  // auto-boxing magic
-    }
-
-    //annotate annotationsDemo method with methodAnnotation (defined below this method)
-    @methodAnnotation (methodDescription = "This is an annotated method description", methodID = 1)
-    @Deprecated     //Provides following suggestion: this method is deprecated, used for legacy purpose, don't use it
-                    // for writing new code. Take a look at method call in main(), it will be striked out
-    private static void annotationsDemo(){
-        /*
-        Annotations enables you to embed supplemental information into a source file. This information, called an annotation,
-         does not change the actions of a program.
-         */
-
-    }
-
-    // A simple annotation type
-    @Retention(RetentionPolicy.RUNTIME)
-    private @interface methodAnnotation{
-
-        /*
-        all annotation types automatically extend the Annotation interface. Thus, Annotation is a super-interface of all annotations
-        Annotation interface is defined in java.lang.annotation package
-
-        All annotations consist solely of method declarations. However, you don’t provide bodies for
-        these methods. Instead, Java implements these methods. Moreover, the methods act much like fields
-
-        A retention policy determines at what point annotation should be discarded.
-        Java defined 3 types of retention policies through java.lang.annotation.RetentionPolicy enumeration. It has SOURCE, CLASS and RUNTIME.
-        Annotation with retention policy SOURCE will be retained only with source code, and discarded during compile time.
-        Annotation with retention policy CLASS will be retained till compiling the code, and discarded during runtime. i.e. will be present in .class files
-        Annotation with retention policy RUNTIME will be available to the JVM through runtime.
-        The retention policy will be specified by using java built-in annotation @Retention, and we have to pass the retention policy type.
-        The default retention policy type is CLASS.
-         */
-        String methodDescription();
-        int methodID();
     }
 }
