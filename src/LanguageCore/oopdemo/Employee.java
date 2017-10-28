@@ -28,6 +28,7 @@ public class Employee {
     }
 
     //When you declare a variable without assigning it an explicit value, the Java compiler will assign a default value.
+    //imp: variables below are package private
     float ratio;        // default value: 0.0
     boolean success;    // default value: false
 
@@ -51,7 +52,7 @@ public class Employee {
 
     static int statInt;
 
-    //Onenote: Block initializers
+    //Onenote: OOP [Block initializers]
     //static block that gets executed exactly once, when the class is first loaded
     static {
         System.out.println("Static block initialized.");
@@ -86,7 +87,7 @@ public class Employee {
 
     //inner classes can have the same access modifiers as other members of class
     //NOTE : Top level classes cannot be declared static (Ex: Employee class cannot be static). Only nested classes can be static.
-    //imp: Nested static classes can be instantiated / initialized
+    //imp: Nested static classes can be instantiated / initialized. NOTE: Inner class is static as member of outer class. No such concept as static class
     public static class StaticInnerClass{
         public void print(){
             //can access static members of enclosing class

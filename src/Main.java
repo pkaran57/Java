@@ -23,10 +23,10 @@ public class Main {
         //variableAndLiterals();
         //arrays();
         //controlStatements();
-        //Onenote: OOP Basics
+        //Onenote: OOP [Access modifiers and Packages]
         //oopDemo();
-        //exception_handling();
-        MultiThreading.main();
+        exception_handling();
+        //MultiThreading.main();
         //Enumerations.enumDemo();
         //TypeWrappersAndAutoBoxing();
         annotationsDemo();      // has deprecated annotation
@@ -190,7 +190,7 @@ public class Main {
 
         String s = "ballo";
 
-        //expression must be of type byte, short, int, char, string or an enumeration in : switch(expression) {};
+        //imp: expression must be of type byte, short, int, char, string or an enumeration in : switch(expression) {};
         switch(s){
             case "hey":         // Duplicate case values are not allowed
                 System.out.println("s is hey");
@@ -299,7 +299,7 @@ public class Main {
 
         e1.varLengthArgs(0,"as");
 
-        //Onenote: Inner class shadowing
+        //Onenote: OOP [Inner class shadowing]
 
         Employee employee = new CEO(150000, "Jake");
         //when a reference to a subclass object is assigned to a superclass reference variable, you will
@@ -309,8 +309,8 @@ public class Main {
         //this calls CEO's getObjectType() method
         employee.getObjectType();
 
-        //Onenote: Abstract Classes vs Interface
-        //Onenote : Object class
+        //Onenote: OOP [Abstract Classes vs Interface]
+        //Onenote : OOP[Object class]
 
         Shape shape = new Square("I am a square !!!", 5);
         shape.printShapeDescription();
@@ -324,7 +324,7 @@ public class Main {
 
         System.out.println("************");
         drug2.printInfo();      //imp: will call Atorvastatin's printInfo
-        //Onenote : interface tips
+        //Onenote : OOP [interface tips]
     }
 
     private static void exception_handling(){

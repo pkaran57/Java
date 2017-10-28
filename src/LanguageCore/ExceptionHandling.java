@@ -15,7 +15,7 @@ to fundamental errors that violate the rules of the Java language or the constra
 Java execution environment. Manually generated exceptions are typically used to report
 some error condition to the caller of a method.
 
-Onenote: Exception Types
+Onenote: Exception Handling
  */
 public class ExceptionHandling {
 
@@ -174,18 +174,18 @@ public class ExceptionHandling {
     /* *************************************************
     TOPIC : Finally
 
-    Onenote : Finally under Exception Types
+    Onenote : Finally under Exception Handling
      *************************************************/
 
     /* *************************************************
     TOPIC : Creating custom exceptions
 
-    Onenote : Creating custom exceptions under Exception Types
+    Onenote : Creating custom exceptions under Exception Handling
      *************************************************/
 
     /* *************************************************
     TOPIC : Chained Exceptions
 
-    Onenote : Chained Exceptions under Exception Types
+    Onenote : Chained Exceptions under Exception Handling
      *************************************************/
 }
