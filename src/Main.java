@@ -356,9 +356,9 @@ public class Main {
         The type wrappers are Double, Float, Long, Integer, Short, Byte, Character, and Boolean [all class names]
          */
 
-        Integer i1 = new Integer(2);
+        Integer i1 = Integer.valueOf(2);
         //If str does not contain a valid numeric value, then a NumberFormatException is thrown.
-        Integer i2 = new Integer("3");
+        Integer i2 = Integer.valueOf("3");
 
         //All of the type wrappers override toString( ). It returns the human-readable form of the
         //value contained within the wrapper. All type wrappers have typeValue() methods like the intValue() below
