@@ -31,7 +31,8 @@ public class Main {
         //MultiThreading.main();
         //Enumerations.enumDemo();
         //TypeWrappersAndAutoBoxing();
-        Annotations.annotationsDemo();
+        //Annotations.annotationsDemo();
+        //Asserts();
     }
 
     //variables which are member of a class are given default values if not initialized
@@ -317,6 +318,19 @@ public class Main {
         Shape shape = new Square("I am a square !!!", 5);
         shape.printShapeDescription();
 
+        /*objref instanceof type
+
+        Here, objref is a reference to an instance of a class, and type is a class type. If objref is of
+        the specified type or can be cast into the specified type, then the instanceof operator
+        evaluates to true. Otherwise, its result is false.*/
+        Employee employee1 = new Employee();
+
+        if(employee1 instanceof CEO){
+            CEO ceo = (CEO) employee1;
+        } else{
+            System.out.println("Can't cast Employee object to CEO");
+        }
+
         //take a look at GenericDrug.java and Atorvastatin.java
         Atorvastatin drug1 = new Atorvastatin();
         drug1.printInfo();
@@ -378,5 +392,31 @@ public class Main {
         double d = i3 / 1.0;
 
         i3++;  // auto-boxing magic
+    }
+
+    public static void Asserts(){
+
+        /*At run time, if the condition is true, no other action takes place. However, if the condition is false, then an AssertionError is thrown.
+        Assertions are often used during testing to verify that some expected condition is actually met. imp: They are not usually used for released code.
+        One important point to understand about assertions is that you must not rely on them to perform any action actually required by the program.
+        The reason is that normally, released code will be run with assertions disabled
+
+        Two forms of assert:
+        1. assert condition;       // If the condition is false, then the assertion fails and a default AssertionError object is thrown.
+        2. assert condition: expr;
+            In this version, expr is a value that is passed to the AssertionError constructor. This value is
+            converted to its string format and displayed if an assertion fails. Typically, you will specify a
+            string for expr, but any non-void expression is allowed as long as it defines a reasonable
+            string conversion.
+        */
+
+        assert false: "false will cause the assert to throw AssertionError";
+
+        /*Assertion Enabling and Disabling Options
+
+        When executing code, you can disable all assertions by using the -da option. You can enable or disable a specific package (and all of its subpackages)
+        by specifying its name followed by three periods after the -ea or -da option. For example, to enable assertions in a package called MyPack, use  -ea:MyPack...
+        To disable assertions in MyPack, use  -da:MyPack...
+        You can also specify a class with the -ea or -da option. For example, this enables AssertDemo individually: -ea:AssertDemo*/
     }
 }
