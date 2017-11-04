@@ -26,11 +26,11 @@ class can only inherit a single superclass (abstract or otherwise).
 */
 
 //A class can implement more than one interface.
-//imp:an interface can either be public or no access modifier (package default)
+//imp: an interface can either be public or no access modifier (package default)
 //Interfaces cannot be instantiated—they can only be implemented by classes or extended by other interfaces.
-//imp:an interface can extend more than 1 interface !
-//imp:members of an interface are public and can only be public. Thus, no need to mention public access modifier
-//imp:static blocks and constructors are not allowed in an interface
+//imp: an interface can extend more than 1 interface !
+//imp: members of an interface are public and can only be public. Thus, no need to mention public access modifier
+//imp: static blocks and constructors are not allowed in an interface
 public interface GenericDrug {
 
     //imp: all variables in an interface are public, static and final by default !
