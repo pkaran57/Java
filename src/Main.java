@@ -5,6 +5,7 @@
 import LanguageCore.Annotations;
 import LanguageCore.Enumerations;
 import LanguageCore.ExceptionHandling;
+import LanguageCore.Generics.AverageCalculator;
 import LanguageCore.MultiThreading;
 import LanguageCore.oopdemo.*;
 import LanguageCore.oopdemo.abstractClass.Shape;
@@ -15,11 +16,19 @@ import LanguageCore.oopdemo.interfaces.GenericDrug;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+/*imp: Static Import
+ By following import with the keyword static, an import statement can be used to import the static members of a class or interface.
+ When using static import, it is possible to refer to static members directly by their names, without having to qualify them with the
+ name of their class. This simplifies and shortens the syntax required to use a static member.*/
+import static java.lang.System.*;
+
 //All java applications begin by calling main method
 //The method main must be declared  public, static, and void. It must accept a single argument that is an array of strings
 public class Main {
 
     public static void main(String[] args) {
+
+        out.println("Do not need to call System since all static members of System class are imported by static import");
 
         //Onenote : Read up to (including) Java language characteristics
         //variableAndLiterals();
@@ -33,6 +42,8 @@ public class Main {
         //TypeWrappersAndAutoBoxing();
         //Annotations.annotationsDemo();
         //Asserts();
+        AverageCalculator.genericsDemo();
+        //Onenote: Generics
     }
 
     //variables which are member of a class are given default values if not initialized
