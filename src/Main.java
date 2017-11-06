@@ -6,6 +6,7 @@ import LanguageCore.Annotations;
 import LanguageCore.Enumerations;
 import LanguageCore.ExceptionHandling;
 import LanguageCore.Generics.AverageCalculator;
+import LanguageCore.LambdaExpressions.LambdaExpression;
 import LanguageCore.MultiThreading;
 import LanguageCore.oopdemo.*;
 import LanguageCore.oopdemo.abstractClass.Shape;
@@ -28,7 +29,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        out.println("Do not need to call System since all static members of System class are imported by static import");
+        //out.println("Do not need to call System since all static members of System class are imported by static import");
 
         //Onenote : Read up to (including) Java language characteristics
         //variableAndLiterals();
@@ -42,8 +43,9 @@ public class Main {
         //TypeWrappersAndAutoBoxing();
         //Annotations.annotationsDemo();
         //Asserts();
-        AverageCalculator.genericsDemo();
+        //AverageCalculator.genericsDemo();
         //Onenote: Generics
+        LambdaExpression.demo();
     }
 
     //variables which are member of a class are given default values if not initialized
