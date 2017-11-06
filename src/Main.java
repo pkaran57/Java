@@ -1,7 +1,7 @@
 //.java name extension is required for each and every java source code file
 // System is a class predefined by java and automatically included. Ex: No need to import anything to use System.out.println()
 // java.lang package is imported implicitly
-//test
+
 import LanguageCore.Annotations;
 import LanguageCore.Enumerations;
 import LanguageCore.ExceptionHandling;
