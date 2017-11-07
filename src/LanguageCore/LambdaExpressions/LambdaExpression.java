@@ -13,13 +13,22 @@ public class LambdaExpression {
         in many cases its type can be inferred.
         imp: A lambda expression is not executed on its own. Rather, it forms the implementation of the abstract method defined by the functional interface
         that specifies its target type. As a result, a lambda expression can be specified only in a context in which a target type is
-        defined. One of these contexts is created when a lambda expression is assigned to a functional interface reference. Other target type
-        contexts include variable initialization, return statements, and method arguments, to name a few.*/
+        defined. One of these contexts is created when a lambda expression is assigned to a functional interface reference. */
+
         //Lambda body consisting of single expression
         RandomNumberGenerator randomNum = () -> random();
 
+        /*An instance of a class is automatically created that implements the functional interface, with the lambda expression defining the behavior of the abstract
+        method declared by the functional interface. When that method is called through the target, the lambda expression is executed. Thus, a lambda expression gives
+        us a way to transform a code segment into an object*/
         System.out.println("A random number is " + randomNum.getRandomNumber());
         System.out.println("Another random number is " + randomNum.getRandomNumber());
+
+        //Lambda body consisting of a block of code
+        RandomNumberGenerator randomNumberGenerator2 = () -> {
+            double randomNumber = random();
+            return randomNumber * 100;
+        };      // Note ; after }
     }
 }
 
