@@ -29,10 +29,53 @@ public class LambdaExpression {
             double randomNumber = random();
             return randomNumber * 100;
         };      // Note ; after }
+
+        // using only 1 generic functional interface for both String and int
+        Add<String> stringAdd = (t1, t2) -> t1 + " "  + t2;
+        Add<Integer> intAdd = (t1, t2) -> t1 + t2;
+
+        System.out.println(add(5, 6, intAdd));
+
+        double aRandomNum = 0.5;
+
+        /*imp: It is important to emphasize that a lambda expression can use and modify an instance variable from its invoking
+        class. It just can’t use a local variable of its enclosing scope unless that variable is effectively final.
+        when a lambda expression uses a local variable from its enclosing scope, a special situation is created that is referred
+        to as a variable capture. In this case, a lambda expression may only use local variables that are effectively final.
+        An effectively final variable is one whose value does not change after it is first assigned. There is no need to
+        explicitly declare such a variable as final, although doing so would not be an error.*/
+        RandomNumberGenerator generateAndStoreRandomNum = () -> {
+
+            thisCanBeModifiedByLambda = random() * aRandomNum;
+            //aRandomNum = thisCanBeModifiedByLambda;
+            return thisCanBeModifiedByLambda;
+        };
     }
+
+    // passing executable code as an argument to a method
+    private static <T> T add(T a1, T a2, Add<T> addMethod){
+        T sum = null;
+        try {
+            sum = addMethod.add(a1, a2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return sum;
+    }
+
+    private static double thisCanBeModifiedByLambda;
 }
 
 // a functional interface is an interface that specifies only one abstract method
 interface RandomNumberGenerator{
     double getRandomNumber();
+}
+
+/*A lambda expression, itself, cannot specify type parameters. Thus, a lambda expression cannot be generic.
+However, the functional interface associated with a lambda expression can be generic. In this case, the target type of the lambda expression
+is determined, in part, by the type argument or arguments specified when a functional interface reference is declared.*/
+interface Add<T> {
+    //imp: A lambda expression can throw an exception. However, it if throws a checked exception, then that exception must be compatible
+    //imp: with the exception(s) listed in the throws clause of the abstract method in the functional interface.
+    T add(T t1, T t2) throws Exception;
 }
