@@ -6,19 +6,30 @@ creates an instance of the functional interface.*/
 class MethodReferences {
 
     static void demo(){
-        System.out.println();
+
+        IntHelper intHelper = new IntHelper();
+
+        IntMultiple staticIntMultiple = IntHelper::getStaticMultiple, intMultiple = intHelper::getMultiple;
+
+    }
+
+
+}
+
+class IntHelper{
+
+    private int number = 10;
+    private static int staticNumber = 5;
+
+    static int getStaticMultiple(int multiplier){
+        return staticNumber * multiplier;
+    }
+
+    int getMultiple(int multiplier){
+        return staticNumber * multiplier;
     }
 }
 
-class Helper<T extends String>{
-
-    private T helperStr;
-
-    static int getMultiple(int num, int multiplier){
-        return multiplier * num;
-    }
-
- /*   T getNOf(T toAdd){
-
-    }*/
+interface IntMultiple{
+    int getMultipleOfNumber(int n);
 }
