@@ -50,6 +50,8 @@ public class LambdaExpression {
             //aRandomNum = thisCanBeModifiedByLambda;
             return thisCanBeModifiedByLambda;
         };
+
+        MethodReferences.demo();
     }
 
     // passing executable code as an argument to a method
