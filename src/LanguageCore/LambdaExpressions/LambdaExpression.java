@@ -69,6 +69,7 @@ public class LambdaExpression {
 }
 
 // a functional interface is an interface that specifies only one abstract method
+@FunctionalInterface
 interface RandomNumberGenerator{
     double getRandomNumber();
 }
@@ -76,6 +77,7 @@ interface RandomNumberGenerator{
 /*A lambda expression, itself, cannot specify type parameters. Thus, a lambda expression cannot be generic.
 However, the functional interface associated with a lambda expression can be generic. In this case, the target type of the lambda expression
 is determined, in part, by the type argument or arguments specified when a functional interface reference is declared.*/
+@FunctionalInterface
 interface Add<T> {
     //imp: A lambda expression can throw an exception. However, it if throws a checked exception, then that exception must be compatible
     //imp: with the exception(s) listed in the throws clause of the abstract method in the functional interface.

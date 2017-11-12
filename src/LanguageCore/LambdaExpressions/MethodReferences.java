@@ -98,18 +98,27 @@ class IntHelper{
     }
 }
 
+@FunctionalInterface
 interface IntMultiple{
     int getMultipleOfNumber(int n);
 }
 
+@FunctionalInterface
 interface ProcessString{
     String upper(String str);
 }
 
+@FunctionalInterface
 interface IsGreaterOrEqual<T>{
     boolean isGreaterOrEqual(T invokingObject, T other);
 }
 
+@FunctionalInterface
 interface CompareMultiple<T>{
     boolean compareMultiple(T[] multiples);
+}
+
+@FunctionalInterface
+interface Initializer{
+    IntHelper initializer(int n);
 }
