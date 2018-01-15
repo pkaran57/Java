@@ -111,8 +111,8 @@ public class Employee {
         public void print(){
             //can access static as well as non static members of enclosing class
             System.out.println("finalStaticField from Employee class is " + finalStaticField);
-            //getObjectType();      //non-static method
-            //printEmployeeID();      //static method
+            getObjectType();      //non-static method
+            printEmployeeID();      //static method
             System.out.println(innerVar);   // innerVar in Employee is hidden
             System.out.println(Employee.this.innerVar);
         }
