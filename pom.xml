@@ -1,16 +1,49 @@
 <project>
-    <modelVersion>4.0.0</modelVersion>
-    <name>Java Project</name>
-
     <!--required-->
+    <modelVersion>4.0.0</modelVersion>
     <groupId>com.ker</groupId>
     <artifactId>java-lang</artifactId>
     <version>1</version>
     <!--required-->
+
+    <name>Java Lang</name>
+    <description>This is a project describing syntax and semantics of Java</description>
+    <url>https://docs.oracle.com/javase/tutorial/index.html</url>
+
+    <licenses>
+        <license>
+            <name>Apache Licence</name>
+        </license>
+    </licenses>
+    <organization>
+        <name>K.E.R</name>
+    </organization>
+    <developers>
+        <developer>
+            <name>K P</name>
+        </developer>
+    </developers>
+
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
     </properties>
+
+    <!--<build>-->
+        <!--<plugins>-->
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-site-plugin</artifactId>-->
+                <!--<version>3.3</version>-->
+            <!--</plugin>-->
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-project-info-reports-plugin</artifactId>-->
+                <!--<version>2.7</version>-->
+            <!--</plugin>-->
+        <!--</plugins>-->
+    <!--</build>-->
 </project>
