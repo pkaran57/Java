@@ -32,18 +32,44 @@
         <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
     </properties>
 
-    <!--<build>-->
-        <!--<plugins>-->
-            <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-site-plugin</artifactId>-->
-                <!--<version>3.3</version>-->
-            <!--</plugin>-->
-            <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-project-info-reports-plugin</artifactId>-->
-                <!--<version>2.7</version>-->
-            <!--</plugin>-->
-        <!--</plugins>-->
-    <!--</build>-->
+    <build>
+        <!-- Customize Directory Structure
+        <sourceDirectory></sourceDirectory>
+        <testOutputDirectory></testOutputDirectory>
+        -->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.3</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <!--to specify a profile:-->
+        <!--mvn -PprofileName mavenPhase-->
+        <!--Example: mvn -Pprod package-->
+        <profile>           <!--almost everything specified in the POM can be overridden under a profile-->
+            <id>prod</id>   <!--id is a required attribute-->
+            <activation>
+                <property>
+                    <name>deploy_env</name>
+                    <value>prod</value>
+                </property>
+            </activation>
+            <build>
+                <directory>prod-package-output</directory>  <!--directory where all the generated files are placed-->
+            </build>
+        </profile>
+    </profiles>
+
+    <!--use mvn dependency:copy-dependencies to pull down all dependencies to the local repo-->
+    <dependencies>
+    </dependencies>
 </project>
