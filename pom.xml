@@ -46,18 +46,34 @@
          See OneNote: "Maven configuration and profile activation" for more info -->
     <repositories>
         <repository>
+            <id>sonatype</id>
+            <name>Sonatype</name>
+            <url>http://repository.sonatype.org/content/groups/public/</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
             <id>spring-plugins</id>
             <name>Spring Plugins Repository</name>
             <url>http://repo.spring.io/plugins-release/</url>
-        </repository>
-    </repositories>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-snapshots</id>
+            <url>https://repo.spring.io/snapshot</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <url>https://repo.spring.io/milestone</url>
+        </pluginRepository>
+    </pluginRepositories>
 
     <build>
         <!-- Customize Directory Structure
         <sourceDirectory></sourceDirectory>
         <testOutputDirectory></testOutputDirectory>
         -->
-        <!--Use mvn help:describe -Dcmd=deploy to see all the goals of various plugins bound to the deploy phase-->
+        <!--Use mvn help:describe -Dcmd=deploy to see all the goals of various plugins bound to the deploy phase. Also shows prior phases that will be executed-->
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
