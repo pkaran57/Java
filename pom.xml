@@ -67,9 +67,26 @@
                 <directory>prod-package-output</directory>  <!--directory where all the generated files are placed-->
             </build>
         </profile>
+
+        <profile>
+            <id>demo</id>
+            <repositories>
+                <repository>   <!-- Specifying repo for the profile-->
+                    <id>demo repo</id>
+                    <url>https://test.com</url>
+                </repository>
+            </repositories>
+        </profile>
     </profiles>
 
-    <!--use mvn dependency:copy-dependencies to pull down all dependencies to the local repo-->
+    <!-- use mvn dependency:copy-dependencies to pull down all dependencies to the local repo
+    use mvn help:effective-pom to view effective pom -->
     <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 </project>
