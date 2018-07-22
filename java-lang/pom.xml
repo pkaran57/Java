@@ -30,7 +30,15 @@
     for that war packaging. -->
     <packaging>jar</packaging>
 
-    <!--Maven properties are value placeholder, like properties in Ant. Their values are accessible anywhere within a POM by using the notation ${X}, where X is the property
+    <!--Maven properties are value placeholder, like properties in Ant. Their values are accessible anywhere within a POM by using the notation ${X}, where X is the property.
+    Their values are accessible anywhere within a POM by using the notation ${X}, where X is the property. They come in five different styles, all accessible from the settings.xml file:
+
+        1. env.X: Prefixing a variable with “env.” will return the shell’s environment variable. For example, ${env.PATH} contains the $path environment variable (%PATH% in Windows).
+        2. project.x: A dot (.) notated path in the POM will contain the corresponding element’s value. For example: <project><version>1.0</version></project> is accessible via ${project.version}.
+        3. settings.x: A dot (.) notated path in the settings.xml will contain the corresponding element’s value. For example: <settings><offline>false</offline></settings> is accessible via ${settings.offline}.
+        4. Java System Properties: All properties accessible via java.lang.System.getProperties() are available as POM properties, such as ${java.home}.
+        5. x: Set within a <properties /> element or an external files, the value may be used as ${someVar}.
+
     Or they can be used by plugins as default values.
     Each plugin goal has arguments associated with it. To see all properties, use: mvn help:describe -Dcmd:cpmpiler:compile -Ddetail-->
     <properties>
