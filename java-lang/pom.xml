@@ -1,0 +1,176 @@
+<project>
+    <!--required-->
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.ker</groupId>
+    <artifactId>java-lang</artifactId>
+    <version>1</version>
+    <!--required-->
+
+    <name>Java Lang</name>
+    <description>This is a project describing syntax and semantics of Java</description>
+    <url>https://docs.oracle.com/javase/tutorial/index.html</url>
+
+    <licenses>
+        <license>
+            <name>Apache Licence</name>
+        </license>
+    </licenses>
+    <organization>
+        <name>K.E.R</name>
+    </organization>
+    <developers>
+        <developer>
+            <name>K P</name>
+        </developer>
+    </developers>
+
+    <!-- Default lifecycle has 23 phases, and this life cycle is interesting because it will adjust itself depending upon the package that you specify within your POM.XML file.
+    What will happen is, since we have a jar packaging, the default lifecycle is smart enough to go out and grab particular plug-ins that are then bound to particular phases.
+    However, if I were to modify the packaging XML element and give it a different value, let's say war, then our default life cycle will get bound to different goals that are appropriate
+    for that war packaging. -->
+    <packaging>jar</packaging>
+
+    <!--Maven properties are value placeholder, like properties in Ant. Their values are accessible anywhere within a POM by using the notation ${X}, where X is the property
+    Or they can be used by plugins as default values.
+    Each plugin goal has arguments associated with it. To see all properties, use: mvn help:describe -Dcmd:cpmpiler:compile -Ddetail-->
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+
+        <trueValue>true</trueValue>
+        <falseValue>false</falseValue>
+        <!--Set this to "true" to ignore a failure during testing. Its use is NOT RECOMMENDED, but quite convenient on occasions-->
+        <maven.test.failure.ignore>${trueValue}</maven.test.failure.ignore>
+    </properties>
+
+    <!-- repo information can also be specified at user / maven installation level by modifying settings.xml file
+         See OneNote: "Maven configuration and profile activation" for more info -->
+    <repositories>
+        <repository>
+            <id>sonatype</id>
+            <name>Sonatype</name>
+            <url>http://repository.sonatype.org/content/groups/public/</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-plugins</id>
+            <name>Spring Plugins Repository</name>
+            <url>http://repo.spring.io/plugins-release/</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-snapshots</id>
+            <url>https://repo.spring.io/snapshot</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <url>https://repo.spring.io/milestone</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <build>
+        <!-- Customize Directory Structure
+        <sourceDirectory></sourceDirectory>
+        <testOutputDirectory></testOutputDirectory>
+        -->
+        <!--Use mvn help:describe -Dcmd=deploy to see all the goals of various plugins bound to the deploy phase. Also shows prior phases that will be executed-->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.3</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-javadoc-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.0.1</version>
+
+                <!-- link javadoc goal of javadoc plugin to the site phase-->
+                <executions>
+                    <execution>
+                        <id>generate-javadoc</id>
+                        <phase>site</phase>
+                        <goals>
+                            <goal>javadoc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+                <configuration>
+                    <reportOutputDirectory>${project.build.directory}/javadocs</reportOutputDirectory>
+                </configuration>
+            </plugin>
+
+        </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.12.4</version>
+                    <!-- configure properties associated with the plugin -->
+                    <configuration>
+                        <skipTests>${falseValue}</skipTests>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <profiles>
+        <!--to specify a profile:-->
+        <!--mvn -PprofileName mavenPhase-->
+        <!--Example: mvn -Pprod package-->
+        <profile>           <!--almost everything specified in the POM can be overridden under a profile-->
+            <id>prod</id>   <!--id is a required attribute-->
+            <activation>
+                <property>
+                    <name>deploy_env</name>
+                    <value>prod</value>
+                </property>
+            </activation>
+            <build>
+                <directory>prod-package-output</directory>  <!--directory where all the generated files are placed-->
+            </build>
+        </profile>
+
+        <profile>
+            <id>demo</id>
+            <repositories>
+                <repository>   <!-- Specifying repo for the profile-->
+                    <id>demo repo</id>
+                    <url>https://test.com</url>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
+
+    <!-- use mvn dependency:copy-dependencies to pull down all dependencies to the local repo
+         use mvn help:effective-pom to view effective pom  NOTE: transitive dependency will not appear in effective pom
+         use mvn dependency:tree to view dependency tree
+    A transitive dependency is simply a dependency of one of our dependencies. JUnit has a transient dependency. -->
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>   <!-- compile is the default scope -->
+            <exclusions>          <!-- excludes a transitive dependency -->
+                <exclusion>
+                    <groupId>test</groupId>
+                    <artifactId>test</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+</project>

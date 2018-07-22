@@ -1,4 +1,4 @@
 /.idea/
 /out/
-/src/TestMain.java
-/*.iml
+/java-lang/src/TestMain.java
+*.iml
