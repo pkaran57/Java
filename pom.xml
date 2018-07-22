@@ -18,6 +18,7 @@
 
     <modules>
         <module>/java-lang</module>
+        <module>/spring-boot</module>
     </modules>
 
     <build>
