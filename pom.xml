@@ -30,14 +30,16 @@
     for that war packaging. -->
     <packaging>jar</packaging>
 
-    <!--Maven properties are value placeholder, like properties in Ant. Their values are accessible anywhere within a POM by using the notation ${X}, where X is the property.-->
-    <!--Or they can be used by plugins as default values-->
+    <!--Maven properties are value placeholder, like properties in Ant. Their values are accessible anywhere within a POM by using the notation ${X}, where X is the property
+    Or they can be used by plugins as default values.
+    Each plugin goal has arguments associated with it. To see all properties, use: mvn help:describe -Dcmd:cpmpiler:compile -Ddetail-->
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
 
         <trueValue>true</trueValue>
+        <falseValue>false</falseValue>
         <!--Set this to "true" to ignore a failure during testing. Its use is NOT RECOMMENDED, but quite convenient on occasions-->
         <maven.test.failure.ignore>${trueValue}</maven.test.failure.ignore>
     </properties>
@@ -85,7 +87,44 @@
                 <artifactId>maven-project-info-reports-plugin</artifactId>
                 <version>2.7</version>
             </plugin>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-javadoc-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.0.1</version>
+
+                <!-- link javadoc goal of javadoc plugin to the site phase-->
+                <executions>
+                    <execution>
+                        <id>generate-javadoc</id>
+                        <phase>site</phase>
+                        <goals>
+                            <goal>javadoc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+                <configuration>
+                    <reportOutputDirectory>${project.build.directory}/javadocs</reportOutputDirectory>
+                </configuration>
+            </plugin>
+
         </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.12.4</version>
+                    <!-- configure properties associated with the plugin -->
+                    <configuration>
+                        <skipTests>${falseValue}</skipTests>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
     <profiles>
