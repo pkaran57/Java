@@ -10,6 +10,12 @@
 
     <packaging>pom</packaging>
 
+    <!--The mechanism in Maven that handles multi-module projects is referred to as the reactor. This part of the Maven core does the following:
+
+    Collects all the available modules to build
+    Sorts the projects into the correct build order
+    Builds the selected projects in order-->
+
     <modules>
         <module>/java-lang</module>
     </modules>
