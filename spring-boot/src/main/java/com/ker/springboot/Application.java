@@ -23,6 +23,7 @@ public class Application {
 
 		SortingService sortingService = applicationContext.getBean(SortingService.class);
 		sortingService.sort(new int[]{34,99,1,0,-43,3872732});
+		sortingService.sort(new int[]{34,99,1,0,-43,3872732});   // Note that a new instance of bubblesort will be autowired even for the same instance of sortingService
 
 		SortingService sortingService1 = applicationContext.getBean(SortingService.class);
 		sortingService.sort(new int[]{34,99,1,0,-43,3872732});
