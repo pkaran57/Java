@@ -3,11 +3,14 @@ package com.ker.springboot.Sort;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 // This is a general-purpose stereotype annotation indicating that the class is a spring component
 @Component
+@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)     // scope is singleton by default
 public class SortingService {
 
 
@@ -28,6 +31,7 @@ public class SortingService {
       selectionSort.sortNumbers(numbers);
       System.out.println("After sorting: ");
       printArray(numbers);
+      System.out.println("SortingAlgorithm instance: " + selectionSort);
     } catch (Exception e) {
       System.err.println("Encountered following error sorting numbers: " + e);
       e.printStackTrace();

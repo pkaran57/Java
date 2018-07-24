@@ -20,7 +20,14 @@ public class Application {
 
 	public static void main(String[] args) {
 		ApplicationContext applicationContext = SpringApplication.run(Application.class, args);
+
 		SortingService sortingService = applicationContext.getBean(SortingService.class);
 		sortingService.sort(new int[]{34,99,1,0,-43,3872732});
+
+		SortingService sortingService1 = applicationContext.getBean(SortingService.class);
+		sortingService.sort(new int[]{34,99,1,0,-43,3872732});
+
+    System.out.println("sortingService = " + sortingService);
+    System.out.println("sortingService1 = " + sortingService1);
 	}
 }
