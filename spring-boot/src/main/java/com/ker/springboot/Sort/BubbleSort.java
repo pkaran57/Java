@@ -4,9 +4,10 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BubbleSort implements SortingAlgorithm{
+public class BubbleSort implements SortingAlgorithm {
 
   public void sortNumbers(int arr[]) {
+    System.out.println("Using BubbleSort to sort...");
 
     int n = arr.length;
     for (int i = 0; i < n - 1; i++)

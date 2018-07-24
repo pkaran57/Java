@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 public class SelectionSort implements SortingAlgorithm{
 
     public void sortNumbers(int arr[]) {
+    System.out.println("Using SelectionSort to sort...");
     int n = arr.length;
 
     // One by one move boundary of unsorted subarray
