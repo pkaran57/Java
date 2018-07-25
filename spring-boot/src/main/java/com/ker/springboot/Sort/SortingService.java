@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 // This is a general-purpose stereotype annotation indicating that the class is a spring component
 @Component
-@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)     // scope is singleton by default
+@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)     // scope is singleton (one bean per application context) by default
 public class SortingService {
 
 

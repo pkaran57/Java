@@ -4,6 +4,7 @@ import com.ker.springboot.Sort.SortingService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
 /*
 What are the beans?
@@ -11,11 +12,11 @@ Classes market with @Component
 
 What are the dependencies for a bean?
 fields marked with @Autowired annotation
-
-Where to search for beans?
-Spring automatically checks the package (i.e. com.ker.springboot) and the sub-packages for components (i.e. component scan)
  */
 @SpringBootApplication
+// Where does Spring search for Beans?
+// Spring automatically checks the package (i.e. com.ker.springboot) and the sub-packages for components (i.e. component scan)
+@ComponentScan(value = {"com.ker.springboot"})    // explicitly specifying packages to search for components
 public class Application {
 
 	public static void main(String[] args) {
