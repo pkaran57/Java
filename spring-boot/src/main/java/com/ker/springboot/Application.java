@@ -13,7 +13,7 @@ Classes market with @Component
 What are the dependencies for a bean?
 fields marked with @Autowired annotation
  */
-@SpringBootApplication
+@SpringBootApplication     // initializes application context
 // Where does Spring search for Beans?
 // Spring automatically checks the package (i.e. com.ker.springboot) and the sub-packages for components (i.e. component scan)
 @ComponentScan(value = {"com.ker.springboot"})    // explicitly specifying packages to search for components
