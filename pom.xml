@@ -17,8 +17,9 @@
     Builds the selected projects in order-->
 
     <modules>
-        <module>/java-lang</module>
-        <module>/spring-boot</module>
+        <module>java-lang</module>
+        <module>spring-boot</module>
+        <module>spring</module>
     </modules>
 
     <build>
