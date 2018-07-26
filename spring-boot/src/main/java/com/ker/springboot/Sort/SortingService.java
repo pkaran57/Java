@@ -1,6 +1,8 @@
 package com.ker.springboot.Sort;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -14,7 +16,7 @@ import javax.annotation.PreDestroy;
 @Component
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)     // scope is singleton (one bean per application context) by default
 public class SortingService {
-
+  private static final Logger LOGGER = LogManager.getLogger(SortingService.class);
 
   // 3 ways of resolving conflicts when multiple beans of same type exist: 1. @Qualifier, 2. @Primary, 3. name of the variable (i.e. variable named after desired implementing class)
   @Qualifier("bubbleSort")
@@ -48,14 +50,14 @@ public class SortingService {
   public void sort(int[] numbers) {
     if (ArrayUtils.isEmpty(numbers)) return;
     try {
-      System.out.println("Before sorting: ");
+      LOGGER.info("Before sorting: ");
       printArray(numbers);
       selectionSort.sortNumbers(numbers);
-      System.out.println("After sorting: ");
+      LOGGER.info("After sorting: ");
       printArray(numbers);
-      System.out.println("SortingAlgorithm instance: " + selectionSort);
+      LOGGER.info("SortingAlgorithm instance: {}", selectionSort);
     } catch (Exception e) {
-      System.err.println("Encountered following error sorting numbers: " + e);
+      LOGGER.error("Encountered following error sorting numbers: " + e);
       e.printStackTrace();
     }
   }
