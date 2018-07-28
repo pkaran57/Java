@@ -3,10 +3,8 @@ package com.ker.spring;
 import com.ker.spring.Sort.SortingService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-@ComponentScan({"com.ker.spring.Util", "com.ker.spring.Sort"})   // not needed for XML based configurations, only needed when using java based Spring annotations
 public class Application {
     private static final Logger LOGGER = LogManager.getLogger(Application.class);
 
