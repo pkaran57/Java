@@ -3,10 +3,10 @@ package com.ker.springboot.Sort;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 @Primary
-@Component
+@Service
 public class SelectionSort implements SortingAlgorithm{
     private static final Logger LOGGER = LogManager.getLogger(SelectionSort.class);
 

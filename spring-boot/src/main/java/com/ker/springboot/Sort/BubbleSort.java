@@ -5,12 +5,12 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 // by specifying proxyMode, the proxy is used to generate instance of the bean whenever a component auto-wires the bean
 // note that the proxy is autowired and not the bean itself, the autowired proxy will return a new instance of the bubble sort instance
 @Scope(scopeName=ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode=ScopedProxyMode.TARGET_CLASS)
-@Component
+@Service
 public class BubbleSort implements SortingAlgorithm {
   private static final Logger LOGGER = LogManager.getLogger(BubbleSort.class);
 

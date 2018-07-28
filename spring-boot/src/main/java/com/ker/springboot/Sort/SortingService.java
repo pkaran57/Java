@@ -8,12 +8,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 // This is a general-purpose stereotype annotation indicating that the class is a spring component
-@Component
+@Service
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)     // scope is singleton (one bean per application context) by default
 public class SortingService {
   private static final Logger LOGGER = LogManager.getLogger(SortingService.class);
