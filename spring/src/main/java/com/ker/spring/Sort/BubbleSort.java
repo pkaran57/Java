@@ -1,5 +1,7 @@
 package com.ker.spring.Sort;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -10,9 +12,10 @@ import org.springframework.stereotype.Component;
 @Scope(scopeName=ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode=ScopedProxyMode.TARGET_CLASS)
 @Component
 public class BubbleSort implements SortingAlgorithm {
+  private static final Logger LOGGER = LogManager.getLogger(BubbleSort.class);
 
   public void sortNumbers(int arr[]) {
-    System.out.println("Using BubbleSort to sort...");
+    LOGGER.debug("Using BubbleSort to sort...");
 
     int n = arr.length;
     for (int i = 0; i < n - 1; i++)

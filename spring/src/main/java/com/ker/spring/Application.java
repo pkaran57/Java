@@ -3,9 +3,7 @@ package com.ker.spring;
 import com.ker.spring.Sort.SortingService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 
-@Configuration
 @ComponentScan({"com.ker.spring.Sort"})
 public class Application {
 
