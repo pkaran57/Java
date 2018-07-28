@@ -31,7 +31,7 @@ public class SortingService {
 //    The PostConstruct annotation is used on a method that needs to be executed after dependency injection is done to perform any initialization. This method MUST be invoked before the class is
 //  put into service. This annotation MUST be supported on all classes that support dependency injection. The method annotated with PostConstruct MUST be invoked even if the class does not request
 // any resources to be injected. Only one method can be annotated with this annotation.
-    System.out.println("Post constructor called...");
+    LOGGER.info("Post constructor called...");
   }
 
   @PreDestroy
@@ -39,7 +39,7 @@ public class SortingService {
 //    The PreDestroy annotation is used on methods as a callback notification to signal that the instance is in the process of being removed by the container. The method annotated with PreDestroy
 //    is typically used to release resources that it has been holding. This annotation MUST be supported by all container managed objects that support PostConstruct
 //    except the application client container in Java EE 5.
-    System.out.println("pre-destroy method called");
+    LOGGER.warn("pre-destroy method called");
   }
 
   // no usages, putting it here to demonstrate that the constructor is not used by the spring framework
@@ -50,10 +50,10 @@ public class SortingService {
   public void sort(int[] numbers) {
     if (ArrayUtils.isEmpty(numbers)) return;
     try {
-      LOGGER.info("Before sorting: ");
+      LOGGER.trace("Before sorting: ");
       printArray(numbers);
       selectionSort.sortNumbers(numbers);
-      LOGGER.info("After sorting: ");
+      LOGGER.trace("After sorting: ");
       printArray(numbers);
       LOGGER.info("SortingAlgorithm instance: {}", selectionSort);
     } catch (Exception e) {
@@ -62,9 +62,8 @@ public class SortingService {
     }
   }
 
-  public static void printArray(int arr[]) {
-    int n = arr.length;
-    for (int i = 0; i < n; ++i) System.out.print(arr[i] + " ");
+  private static void printArray(int arr[]) {
+    for (int anArr : arr) System.out.print(anArr + " ");
     System.out.println();
   }
 }

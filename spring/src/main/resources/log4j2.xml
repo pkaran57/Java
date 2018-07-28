@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- We mainly have 3 components to work with Log4j:
+
+Logger: It is used to log the messages.
+Appender: It is used to publish the logging information to the destination like a file, database, console etc.
+Layout: It is used to format logging information in different styles.
+
+Logging levels are divided into the following set:
+
+Fatal: error messages that indicate that some subsystem or the entire program cannot continue execution and will terminate.
+Error: error messages regarding a problem that should be handled by a human. These are generally useful for operators to alert on.
+Warn: warning messages regarding potential problems that may need to be handled by a human. This level is often misused and ignored as a result.
+Info: informative messages about the state of a program. These types of messages tend to be related to the lifecycle of a program and can be viewed as a way to debug the macro state of the program.
+Debug: debugging information about internal states of the program. These messages are usually only helpful to the developers maintaining a program.
+Trace: messages tracing the execution flow of a program. These messages are usually very low level and simply mirror the micro state of a program and generally don’t offer more information than a debugger would.
+-->
+
+<!--The status logger is used internally by log4j2 components. Setting status="debug" (or "trace") in the configuration will cause this internal logging to be output to the command line.
+It will print debug information about which log4j2 plugin components are loaded (all configuration elements map to log4j2 plugins), and more details like for example what appenders and
+loggers were found, what parameters they have and how they are combined.-->
+<Configuration status="WARN">
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="com.ker.spring" level="trace" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+
+        <Logger name="org.springframework" level="info" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+
+        <Root level="error">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>
+

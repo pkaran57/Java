@@ -1,14 +1,18 @@
 package com.ker.spring;
 
 import com.ker.spring.Sort.SortingService;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 @ComponentScan({"com.ker.spring.Sort"})
 public class Application {
+    private static final Logger LOGGER = LogManager.getLogger(Application.class);
 
     public static void main(String[] args){
-        try(AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(Application.class)){  // auto closable
+        // ApplicationContext.xml should be on the classpath. Files in resources are in the classpath by default
+        try(ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("ApplicationContext.xml")){  // auto closable
             SortingService sortingService = applicationContext.getBean(SortingService.class);
 
             sortingService.sort(new int[]{34,99,1,0,-43,3872732});
@@ -17,8 +21,8 @@ public class Application {
             SortingService sortingService1 = applicationContext.getBean(SortingService.class);
             sortingService.sort(new int[]{34,99,1,0,-43,3872732});
 
-            System.out.println("sortingService = " + sortingService);
-            System.out.println("sortingService1 = " + sortingService1);
+            LOGGER.info("sortingService = " + sortingService);
+            LOGGER.info("sortingService1 = " + sortingService1);
         }
     }
 }
