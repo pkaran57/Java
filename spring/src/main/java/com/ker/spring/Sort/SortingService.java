@@ -1,5 +1,6 @@
 package com.ker.spring.Sort;
 
+import com.ker.spring.Util.StringUtil;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,11 +21,14 @@ public class SortingService {
     this.selectionSort = selectionSort;
   }
 
+  @Autowired
+  private StringUtil stringUtils;
+
   private void postConstructor(){
 //    The PostConstruct annotation is used on a method that needs to be executed after dependency injection is done to perform any initialization. This method MUST be invoked before the class is
 //  put into service. This annotation MUST be supported on all classes that support dependency injection. The method annotated with PostConstruct MUST be invoked even if the class does not request
 // any resources to be injected. Only one method can be annotated with this annotation.
-    LOGGER.info("Post constructor called...");
+    LOGGER.info(stringUtils.joinString("postConstructor", "method called"));
   }
 
   private void preDestroy(){

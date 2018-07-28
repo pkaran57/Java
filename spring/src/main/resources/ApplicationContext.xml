@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- adding the component scan below enables Spring based annotations to be used along with XML configuration-->
+    <context:component-scan base-package="com.ker.spring.*"/>
 
     <bean id="bubbleSort" class="com.ker.spring.Sort.BubbleSort" scope="prototype"/>
     <bean id="selectionSort" class="com.ker.spring.Sort.SelectionSort" primary="true"/>
