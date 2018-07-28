@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -72,7 +71,8 @@ public class SortingService {
     System.out.println();
   }
 
-  public void listTestEnvUrl(){
+  public String listTestEnvUrl(){
     LOGGER.info("DEV_TEST_URL = {}", DEV_TEST_URL);
+    return DEV_TEST_URL;
   }
 }
