@@ -1,6 +1,8 @@
-# key snippets to searh for when debug log level set:
+# key snippets to search for when debug log level set:
     #1. Identified candidate component class
     #2. Searching directory
     #3. Autowiring by type from bean
 logging.level:
- org.springframework: DEBUG
+ root: WARN
+ #org.springframework: DEBUG
+ com.ker.springboot.*: TRACE
