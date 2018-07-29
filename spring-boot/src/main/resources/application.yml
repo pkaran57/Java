@@ -4,5 +4,5 @@
     #3. Autowiring by type from bean
 logging.level:
  root: WARN
- org.springframework: DEBUG
+ org.springframework: WARN
  com.ker.springboot: TRACE

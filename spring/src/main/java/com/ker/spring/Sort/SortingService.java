@@ -5,13 +5,8 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+import java.util.Arrays;
 
 public class SortingService {
   private static final Logger LOGGER = LogManager.getLogger(SortingService.class);
@@ -46,20 +41,13 @@ public class SortingService {
   public void sort(int[] numbers) {
     if (ArrayUtils.isEmpty(numbers)) return;
     try {
-      LOGGER.trace("Before sorting: ");
-      printArray(numbers);
+      LOGGER.trace("Before sorting: " + Arrays.toString(numbers));
       selectionSort.sortNumbers(numbers);
-      LOGGER.trace("After sorting: ");
-      printArray(numbers);
+      LOGGER.trace("After sorting: " + Arrays.toString(numbers));
       LOGGER.info("SortingAlgorithm instance: {}", selectionSort);
     } catch (Exception e) {
       LOGGER.error("Encountered following error sorting numbers: " + e);
       e.printStackTrace();
     }
-  }
-
-  private static void printArray(int arr[]) {
-    for (int anArr : arr) System.out.print(anArr + " ");
-    System.out.println();
   }
 }

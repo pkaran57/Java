@@ -1,4 +1,4 @@
-package com.ker.springboot.Sort;
+package com.ker.springboot.sort;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

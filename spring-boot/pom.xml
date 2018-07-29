@@ -28,7 +28,7 @@
 		<!--brings in spring boot functionality-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 			<!--exclusion for using log4j2-->
 			<exclusions>
 				<exclusion>

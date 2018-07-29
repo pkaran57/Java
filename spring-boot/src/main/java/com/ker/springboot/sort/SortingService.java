@@ -1,4 +1,4 @@
-package com.ker.springboot.Sort;
+package com.ker.springboot.sort;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.logging.log4j.LogManager;
@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.util.Arrays;
 
 // This is a general-purpose stereotype annotation indicating that the class is a spring component
 @Service
@@ -54,21 +55,14 @@ public class SortingService {
   public void sort(int[] numbers) {
     if (ArrayUtils.isEmpty(numbers)) return;
     try {
-      LOGGER.trace("Before sorting: ");
-      printArray(numbers);
+      LOGGER.trace("Before sorting: " + Arrays.toString(numbers));
       selectionSort.sortNumbers(numbers);
-      LOGGER.trace("After sorting: ");
-      printArray(numbers);
+      LOGGER.trace("After sorting: " + Arrays.toString(numbers));
       LOGGER.info("SortingAlgorithm instance: {}", selectionSort);
     } catch (Exception e) {
       LOGGER.error("Encountered following error sorting numbers: " + e);
       e.printStackTrace();
     }
-  }
-
-  private static void printArray(int arr[]) {
-    for (int anArr : arr) System.out.print(anArr + " ");
-    System.out.println();
   }
 
   public String listTestEnvUrl(){

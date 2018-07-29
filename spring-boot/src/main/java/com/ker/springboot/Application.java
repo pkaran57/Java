@@ -1,6 +1,5 @@
 package com.ker.springboot;
 
-import com.ker.springboot.Sort.SortingService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.boot.SpringApplication;
@@ -27,21 +26,5 @@ public class Application {
 
   public static void main(String[] args) {
     ApplicationContext applicationContext = SpringApplication.run(Application.class, args);
-
-    SortingService sortingService = applicationContext.getBean(SortingService.class);
-    sortingService.sort(new int[] {34, 99, 1, 0, -43, 3872732});
-    sortingService.sort(
-        new int[] {
-          34, 99, 1, 0, -43, 3872732
-        }); // Note that a new instance of bubblesort will be autowired even for the same instance
-            // of sortingService
-
-    SortingService sortingService1 = applicationContext.getBean(SortingService.class);
-    sortingService.sort(new int[] {34, 99, 1, 0, -43, 3872732});
-
-    sortingService.listTestEnvUrl();
-
-    LOGGER.info("sortingService = " + sortingService);
-    LOGGER.info("sortingService1 = " + sortingService1);
   }
 }

@@ -1,4 +1,4 @@
-package com.ker.springboot.Sort;
+package com.ker.springboot.sort;
 
 import org.junit.*;
 import org.junit.runner.RunWith;

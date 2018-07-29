@@ -1,6 +1,6 @@
 package com.ker.springboot;
 
-import com.ker.springboot.Sort.SortingService;
+import com.ker.springboot.sort.SortingService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
