@@ -9,8 +9,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertArrayEquals;
 
-@RunWith(SpringRunner.class)
-@ContextConfiguration(locations="/ApplicationContext.xml")
+//Load the context
+@RunWith(SpringRunner.class)  // tells JUnit to run using Spring’s testing support. SpringRunner is the new name for SpringJUnit4ClassRunner, it’s just a bit easier on the eye.
+@ContextConfiguration(locations="/testContext.xml")
 public class ApplicationTest {
 
   @Autowired
