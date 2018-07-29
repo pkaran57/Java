@@ -1,17 +1,16 @@
 package com.ker.springboot.sort;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+@Log4j2
 @Primary
 @Service
 public class SelectionSort implements SortingAlgorithm{
-    private static final Logger LOGGER = LogManager.getLogger(SelectionSort.class);
 
     public void sortNumbers(int arr[]) {
-        LOGGER.debug("Using SelectionSort to sort...");
+        log.debug("Using SelectionSort to sort...");
     int n = arr.length;
 
     // One by one move boundary of unsorted subarray

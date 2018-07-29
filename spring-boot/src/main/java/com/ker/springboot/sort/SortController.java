@@ -1,16 +1,15 @@
 package com.ker.springboot.sort;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Log4j2
 @RestController
 public class SortController {
 
-    private static final Logger LOGGER = LogManager.getLogger(SortController.class);
     private final SortingService sortingService;
     private final ApplicationContext applicationContext;
 
@@ -37,7 +36,7 @@ public class SortController {
 
         sortingService.listTestEnvUrl();
 
-        LOGGER.info("sortingService = " + sortingService);
-        LOGGER.info("sortingService1 = " + sortingService1);
+        log.info("sortingService = " + sortingService);
+        log.info("sortingService1 = " + sortingService1);
     }
 }
