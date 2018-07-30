@@ -16,6 +16,21 @@ public class ZipController {
         return zipCodeService.getZipData(zipCode);
     }
 
+    @GetMapping("/deleteZipData")
+    public int deleteZipData(@RequestParam final int zipCode){
+        return zipCodeService.deleteZipData(zipCode);
+    }
+
+    @GetMapping("/addZipData")
+    public int addZipData(@RequestParam final int zipCode, @RequestParam final String locationData){
+        return zipCodeService.addZipData(zipCode, locationData);
+    }
+
+    @GetMapping("/updateZipData")
+    public int delete(@RequestParam final int zipCode, @RequestParam final String newLocationData){
+        return zipCodeService.updateZipData(zipCode, newLocationData);
+    }
+
     @GetMapping("/throwException")
     public void throwError() throws Exception {
         zipCodeService.throwException();

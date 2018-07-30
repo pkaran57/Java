@@ -17,4 +17,16 @@ public class ZipCodeService {
     void throwException() throws IllegalAccessException {
         throw new IllegalAccessException();
     }
+
+    int deleteZipData(final int zipCode) {
+        return zipDao.deleteZips(zipCode);
+    }
+
+    int addZipData(final int zipCode, final String locationData) {
+        return zipDao.addZipData(zipCode, locationData);
+    }
+
+    public int updateZipData(final int zipCode, final String newLocationData) {
+        return zipDao.updateZipData(zipCode, newLocationData);
+    }
 }
