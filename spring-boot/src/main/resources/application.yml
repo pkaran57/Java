@@ -6,3 +6,5 @@ logging.level:
  root: WARN
  org.springframework: INFO
  com.ker.springboot: TRACE
+
+dev.test.url: http://dev-test.com
