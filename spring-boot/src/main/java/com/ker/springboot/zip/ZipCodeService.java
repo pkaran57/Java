@@ -9,7 +9,7 @@ public class ZipCodeService {
     @Autowired
     ZipDao zipDao;
 
-    String getZipData(final String zipCode){
+    String getZipData(final int zipCode){
         final String locationData = zipDao.getLocationForZip(zipCode);
         return locationData == null ? "Sorry, unable to find data for zip : " + zipCode : locationData;
     }

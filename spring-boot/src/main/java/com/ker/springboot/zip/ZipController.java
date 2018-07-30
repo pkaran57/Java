@@ -12,7 +12,7 @@ public class ZipController {
     ZipCodeService zipCodeService;
 
     @GetMapping("/getZipData")
-    public String getZipData(@RequestParam final String zipCode){
+    public String getZipData(@RequestParam final int zipCode){
         return zipCodeService.getZipData(zipCode);
     }
 

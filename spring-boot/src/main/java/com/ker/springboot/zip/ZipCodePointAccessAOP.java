@@ -12,7 +12,7 @@ import java.util.Arrays;
 @Log4j2
 @Aspect    // aspect = joint point + advice. Process of implementing AOP is called weaving
 @Configuration
-public class ZipCodePointAccessAspect {
+public class ZipCodePointAccessAOP {
 
     // Expression example: @Pointcut("execution(public String org.baeldung.dao.FooDao.findById(Long))")
     // Pointcut above will match exactly the execution of findById method of the FooDao class. This works, but it is not very flexible. Suppose we would like to match all the
