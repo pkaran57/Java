@@ -1,5 +1,6 @@
 package com.ker.springboot.sort;
 
+import com.ker.springboot.aop.TrackTime;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -25,6 +26,7 @@ public class SortController {
         return intsToSort;
     }
 
+    @TrackTime
     @GetMapping("/testSortService")
     public void testSortingService(){
         //SortingService sortingService = applicationContext.getBean(SortingService.class);

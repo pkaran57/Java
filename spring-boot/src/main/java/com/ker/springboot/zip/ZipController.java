@@ -15,4 +15,9 @@ public class ZipController {
     public String getZipData(@RequestParam final String zipCode){
         return zipCodeService.getZipData(zipCode);
     }
+
+    @GetMapping("/throwException")
+    public void throwError() throws Exception {
+        zipCodeService.throwException();
+    }
 }
