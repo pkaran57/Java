@@ -16,6 +16,7 @@ public class ZipDao {
     private List<Zip> zipCache = new ArrayList<>();
 
     // spring JDBC will auto close connection in case an exception is thrown while retrieving data
+    // How does Spring boot know about info on H2? It sees H2 on classpath and it auto configures JDBC template to be able to connect to the H2 in mem DB
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
