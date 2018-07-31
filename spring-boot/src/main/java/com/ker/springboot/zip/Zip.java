@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "ZIP_DATA")
 @NamedQuery(name="getAllZips", query = "select z from Zip z")
-class Zip {
+public class Zip {
 
     //@GeneratedValue     // use this only if JPA to generate ID
     @Id

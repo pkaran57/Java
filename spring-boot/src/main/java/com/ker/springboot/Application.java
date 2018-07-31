@@ -1,6 +1,8 @@
 package com.ker.springboot;
 
+import com.ker.springboot.zip.Zip;
 import com.ker.springboot.zip.ZipDaoJPA;
+import com.ker.springboot.zip.ZipDaoSpringJpa;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -27,6 +29,9 @@ public class Application implements CommandLineRunner {
   @Autowired
   ZipDaoJPA zipDaoJPA;
 
+  @Autowired
+  ZipDaoSpringJpa zipDaoSpringJpa;
+
   public static void main(String[] args) {
     System.out.println("Before app start...");
     ApplicationContext applicationContext = SpringApplication.run(Application.class, args);
@@ -42,5 +47,11 @@ public class Application implements CommandLineRunner {
     zipDaoJPA.deleteZip(4545);
     zipDaoJPA.updateZipData(97233, "Gresham edited");
     log.debug("Info for all zips post edits : {}", zipDaoJPA.getDataForAllZips());
+
+    log.debug("Info for all zips : {}", zipDaoSpringJpa.findAll());
+    zipDaoSpringJpa.save(Zip.builder().zip(4545).locationInfo("blha").build());
+    zipDaoSpringJpa.deleteById(4545);
+    zipDaoSpringJpa.save(Zip.builder().zip(97233).locationInfo("Gresham edited").build());
+    log.debug("Info for all zips post edits : {}", zipDaoSpringJpa.findAll());
   }
 }
