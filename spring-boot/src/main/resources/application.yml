@@ -6,5 +6,8 @@ logging.level:
  root: WARN
  org.springframework: INFO
  com.ker.springboot: TRACE
+ org.hibernate.SQL: DEBUG
+ org.hibernate.type: TRACE
+
 
 dev.test.url: http://dev-test.com

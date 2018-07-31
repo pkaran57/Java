@@ -1,0 +1,9 @@
+-- Thanks to Spring's Auto-Configuration, it enables execution of schema.sql and data.sql in resources folder on app startup
+
+-- JPA will automatically define schema based on entity object. Thus, the below create table will cause a conflict. Also, schema.sql cannot be empty and thus renaming it to schema.
+--create table ZIP_DATA
+--(
+--    ZIP integer not null,
+--    LOCATION_INFO varchar(255),
+--    primary key(ZIP)
+--);

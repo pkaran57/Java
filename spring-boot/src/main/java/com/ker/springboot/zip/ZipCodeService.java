@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 public class ZipCodeService {
 
     @Autowired
-    ZipDao zipDao;
+    ZipDaoJDBC zipDaoJDBC;
 
     String getZipData(final int zipCode){
-        final String locationData = zipDao.getLocationForZip(zipCode);
+        final String locationData = zipDaoJDBC.getLocationInfoForZip(zipCode);
         return locationData == null ? "Sorry, unable to find data for zip : " + zipCode : locationData;
     }
 
@@ -19,14 +19,14 @@ public class ZipCodeService {
     }
 
     int deleteZipData(final int zipCode) {
-        return zipDao.deleteZips(zipCode);
+        return zipDaoJDBC.deleteZip(zipCode);
     }
 
     int addZipData(final int zipCode, final String locationData) {
-        return zipDao.addZipData(zipCode, locationData);
+        return zipDaoJDBC.addZip(zipCode, locationData);
     }
 
-    public int updateZipData(final int zipCode, final String newLocationData) {
-        return zipDao.updateZipData(zipCode, newLocationData);
+    int updateZipData(final int zipCode, final String newLocationData) {
+        return zipDaoJDBC.updateZipData(zipCode, newLocationData);
     }
 }

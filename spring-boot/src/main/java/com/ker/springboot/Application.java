@@ -1,6 +1,8 @@
 package com.ker.springboot;
 
+import com.ker.springboot.zip.ZipDaoJPA;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,6 +24,9 @@ fields marked with @Autowired annotation
 @PropertySource("classpath:app.properties")     // application.properties is automatically recognised by Spring Boot
 public class Application implements CommandLineRunner {
 
+  @Autowired
+  ZipDaoJPA zipDaoJPA;
+
   public static void main(String[] args) {
     System.out.println("Before app start...");
     ApplicationContext applicationContext = SpringApplication.run(Application.class, args);
@@ -31,5 +36,11 @@ public class Application implements CommandLineRunner {
   @Override
   public void run(String... args) throws Exception {
     log.info("Will be invoked as soon as the application is launched. Since the method is not static, can autowire beans.");
+
+    log.debug("Info for all zips : {}", zipDaoJPA.getDataForAllZips());
+    zipDaoJPA.addZip(4545, "blha");
+    zipDaoJPA.deleteZip(4545);
+    zipDaoJPA.updateZipData(97233, "Gresham edited");
+    log.debug("Info for all zips post edits : {}", zipDaoJPA.getDataForAllZips());
   }
 }

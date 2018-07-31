@@ -21,14 +21,14 @@ public class ZipCodePointAccessAOP {
 
     // execution(* PACKAGE.*.*(..))
     // above translates to: anyReturnType Package.classname.method(anyargs)
-    @Before(value="execution(* com.ker.springboot.zip.ZipDao.getLocationForZip(..))")    // expression is called a point cut
+    @Before(value="execution(* com.ker.springboot.zip.ZipDaoJDBC.getLocationInfoForZip(..))")    // expression is called a point cut
     public void before(final JoinPoint joinPoint){
         // this method implementation is called advice
         log.info("@Before : Intercepted before following method call execution: " + joinPoint);
     }
 
     // only execute in case no exception thrown i.e. method executes and returns just fine
-    @AfterReturning(value="execution(* com.ker.springboot.zip.ZipDao.getLocationForZip(..))", returning = "result")
+    @AfterReturning(value="execution(* com.ker.springboot.zip.ZipDaoJDBC.getLocationInfoForZip(..))", returning = "result")
     public void afterReturning(final JoinPoint joinPoint, final String result){
         log.info("@AfterReturning : Intercepted after successful execution was completed for following method: {}. Returning the following information: {}", joinPoint, result);
     }
