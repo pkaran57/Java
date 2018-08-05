@@ -2,26 +2,19 @@
 // System is a class predefined by java and automatically included. Ex: No need to import anything to use System.out.println()
 // java.lang package is imported implicitly
 
-import LanguageCore.Annotations;
-import LanguageCore.Enumerations;
 import LanguageCore.ExceptionHandling;
-import LanguageCore.Generics.AverageCalculator;
-import LanguageCore.LambdaExpressions.LambdaExpression;
-import LanguageCore.MultiThreading;
-import LanguageCore.oopdemo.*;
+import LanguageCore.Streams;
+import LanguageCore.oopdemo.CEO;
+import LanguageCore.oopdemo.Employee;
 import LanguageCore.oopdemo.abstractClass.Shape;
 import LanguageCore.oopdemo.abstractClass.Square;
 import LanguageCore.oopdemo.interfaces.Atorvastatin;
 import LanguageCore.oopdemo.interfaces.GenericDrug;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-
 /*imp: Static Import
  By following import with the keyword static, an import statement can be used to import the static members of a class or interface.
  When using static import, it is possible to refer to static members directly by their names, without having to qualify them with the
  name of their class. This simplifies and shortens the syntax required to use a static member.*/
-import static java.lang.System.*;
 
 //All java applications begin by calling main method
 //The method main must be declared  public, static, and void. It must accept a single argument that is an array of strings
@@ -45,7 +38,8 @@ public class Main {
         //Asserts();
         //AverageCalculator.genericsDemo();
         //Onenote: Generics
-        LambdaExpression.demo();
+        //LambdaExpression.demo();
+        Streams.demo();
     }
 
     //variables which are member of a class are given default values if not initialized
