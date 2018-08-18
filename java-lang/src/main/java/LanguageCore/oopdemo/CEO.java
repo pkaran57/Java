@@ -31,7 +31,7 @@ public class CEO extends Employee{
 
     //*********************************************TOPIC : member hiding and overriding
 
-    //this method hides method in superclass
+    //this method hides method in superclass, must not have weaker access compared to overridden method
     //Onenote: Covariant returns
     public void getObjectType(){
 

@@ -2,14 +2,18 @@
 // System is a class predefined by java and automatically included. Ex: No need to import anything to use System.out.println()
 // java.lang package is imported implicitly
 
+import LanguageCore.Annotations;
+import LanguageCore.Enumerations;
 import LanguageCore.ExceptionHandling;
-import LanguageCore.Streams;
+import LanguageCore.LambdaExpressions.LambdaExpression;
 import LanguageCore.oopdemo.CEO;
 import LanguageCore.oopdemo.Employee;
 import LanguageCore.oopdemo.abstractClass.Shape;
 import LanguageCore.oopdemo.abstractClass.Square;
 import LanguageCore.oopdemo.interfaces.Atorvastatin;
 import LanguageCore.oopdemo.interfaces.GenericDrug;
+
+import static java.lang.System.out;
 
 /*imp: Static Import
  By following import with the keyword static, an import statement can be used to import the static members of a class or interface.
@@ -22,24 +26,24 @@ public class Main {
 
     public static void main(String[] args) {
 
-        //out.println("Do not need to call System since all static members of System class are imported by static import");
+        out.println("Do not need to call System since all static members of System class are imported by static import");
 
         //Onenote : Read up to (including) Java language characteristics
-        //variableAndLiterals();
-        //arrays();
-        //controlStatements();
+        variableAndLiterals();
+        arrays();
+        controlStatements();
         //Onenote: OOP [Access modifiers and (Packages and CLASSPATH)]
-        //oopDemo();
+        oopDemo();
         //exception_handling();
         //MultiThreading.main();
-        //Enumerations.enumDemo();
-        //TypeWrappersAndAutoBoxing();
-        //Annotations.annotationsDemo();
-        //Asserts();
+        Enumerations.enumDemo();
+        TypeWrappersAndAutoBoxing();
+        Annotations.annotationsDemo();
+        Asserts();
         //AverageCalculator.genericsDemo();
         //Onenote: Generics
-        //LambdaExpression.demo();
-        Streams.demo();
+        LambdaExpression.demo();
+        //Streams.demo();
     }
 
     //variables which are member of a class are given default values if not initialized
