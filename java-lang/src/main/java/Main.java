@@ -44,7 +44,7 @@ public class Main {
         Asserts();
         AverageCalculator.genericsDemo();
         //Onenote: Generics
-        LambdaExpression.demo();
+        new LambdaExpression().demo();
         //Streams.demo();
     }
 

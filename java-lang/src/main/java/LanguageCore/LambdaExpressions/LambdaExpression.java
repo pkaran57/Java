@@ -4,10 +4,15 @@ import static java.lang.Math.random;
 
 public class LambdaExpression {
 
+    static int staticInt = 44;
+    int integer = 55;
+
+    private double instanceDouble = 4d;
+
     /*Lambda operator or the arrow operator, is −> divides a lambda expression into two parts. The left side specifies any
     parameters required by the lambda expression. (If no parameters are needed, an empty parameter list is used.) On the right
     side is the lambda body, which specifies the actions of the lambda expression. The −> can be verbalized as “becomes” or “goes to.”*/
-    public static void demo(){
+    public void demo(){
 
         /*Although it is possible to explicitly specify the type of a parameter, such as n in this case, often you won’t need to do so because
         in many cases its type can be inferred.
@@ -24,11 +29,24 @@ public class LambdaExpression {
         System.out.println("A random number is " + randomNum.getRandomNumber());
         System.out.println("Another random number is " + randomNum.getRandomNumber());
 
+        double localDouble = 3d;
+
         //Lambda body consisting of a block of code
         RandomNumberGenerator randomNumberGenerator2 = () -> {
             double randomNumber = random();
+            System.out.println("this refers to the class that the lambda resides in - " + this.integer);
+            // instance variables can be modified and instance name hiding allowed
+            double instanceDouble = 34;
+            this.instanceDouble = 43;
+
+            // local variable cannot be modified and local variable name hiding not allowed
+            //double localDouble;
+            //localDouble = 44;
+
             return randomNumber * 100;
         };      // Note ; after }
+
+        randomNumberGenerator2.getRandomNumber();
 
         // using only 1 generic functional interface for both String and int
         Add<String> stringAdd = (t1, t2) -> t1 + " "  + t2;
@@ -52,6 +70,7 @@ public class LambdaExpression {
         };
 
         MethodReferences.demo();
+        Functions.demo();
     }
 
     // passing executable code as an argument to a method

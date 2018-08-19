@@ -20,7 +20,7 @@ class MethodReferences {
         IntMultiple staticIntMultiple = IntHelper::getStaticMultiple, intMultiple = intHelper::getMultiple;
 
         //imp: 4 possibilities:
-        // Class::StaticMethod                          x -> Class::StaticMethod(x)
+        // Class::StaticMethod                          x -> Class.StaticMethod(x)
         // variableInstance::instanceMethod             () -> variableInstance.instanceMethod()
         // Class::instanceMethod                        x -> x.instanceMethod()
         // Class::new                                   () -> new Class ()
@@ -54,22 +54,25 @@ class MethodReferences {
         stringList.forEach(String::toUpperCase);   //behaves as if: for (T t : this) {action.accept(t);     see javadoc for forEach
 
         Supplier<IntHelper> intHelperSupplier = IntHelper::new;     // Class::new         () -> new Class ()
-        IntHelper intHelper1 = intHelperSupplier.get();
+        Supplier<IntHelper> intHelperSupplier2 = () -> new IntHelper(533);
 
         //imp: following is the deceleration of abstract method in IsGreaterOrEqual<T> interface- boolean isGreaterOrEqual(T invokingObject, T other);
         IsGreaterOrEqual<IntHelper> isGreater = IntHelper::isGreaterOrEqual;
         System.out.println("isGreater.isGreaterOrEqual(new IntHelper(), new IntHelper()) = " + isGreater.isGreaterOrEqual(new IntHelper(), new IntHelper()));
 
+        IsGreaterOrEqualInstance<IntHelper> isGreaterOrEqualInstance = intHelperSupplier.get()::isGreaterOrEqual;
+        System.out.println("isGreaterOrEqualInstance.isGreaterOrEqual(new IntHelper()) = " + isGreaterOrEqualInstance.isGreaterOrEqual(intHelperSupplier2.get()));
+
         //imp: You can refer to the superclass version of a method by use of super, as shown here- super::name
         //The name of the method is specified by name. Another form is typeName.super::name where typeName refers to an enclosing class or super interface
 
-        IntHelper[] intHelpers = {new IntHelper(3), new IntHelper(4)};
+        IntHelper[] intHelpers = {intHelperSupplier.get(), intHelperSupplier2.get()};
 
         CompareMultiple<IntHelper> compareMultiple = IntHelper::compareMultiple;
         //imp: Method References with Generics
         //It is important to point out, however, that explicitly specifying the type argument is not required in this situation (and many others)
         // because the type argument would have been automatically inferred.
-        System.out.println("compareMultiple.compareMultiple(intHelpers): " + compareMultiple.<IntHelper>compareMultiple(intHelpers));
+        System.out.println("compareMultiple.compareMultiple(intHelpers): " + compareMultiple.compareMultiple(intHelpers));
 
         ArrayList<IntHelper> intHelpersList = new ArrayList<>();
         intHelpersList.add(new IntHelper(5));
@@ -142,6 +145,11 @@ interface ProcessStringInstance{
 @FunctionalInterface
 interface IsGreaterOrEqual<T>{
     boolean isGreaterOrEqual(T invokingObject, T other);
+}
+
+@FunctionalInterface
+interface IsGreaterOrEqualInstance<T>{
+    boolean isGreaterOrEqual(T other);
 }
 
 @FunctionalInterface
