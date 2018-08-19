@@ -5,6 +5,7 @@
 import LanguageCore.Annotations;
 import LanguageCore.Enumerations;
 import LanguageCore.ExceptionHandling;
+import LanguageCore.Generics.AverageCalculator;
 import LanguageCore.LambdaExpressions.LambdaExpression;
 import LanguageCore.oopdemo.CEO;
 import LanguageCore.oopdemo.Employee;
@@ -34,13 +35,14 @@ public class Main {
         controlStatements();
         //Onenote: OOP [Access modifiers and (Packages and CLASSPATH)]
         oopDemo();
-        //exception_handling();
-        //MultiThreading.main();
+    // Onenote: Anonymous Classes
+    // exception_handling();
+    // MultiThreading.main();
         Enumerations.enumDemo();
         TypeWrappersAndAutoBoxing();
         Annotations.annotationsDemo();
         Asserts();
-        //AverageCalculator.genericsDemo();
+        AverageCalculator.genericsDemo();
         //Onenote: Generics
         LambdaExpression.demo();
         //Streams.demo();

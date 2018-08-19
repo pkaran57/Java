@@ -3,6 +3,9 @@ package LanguageCore.LambdaExpressions;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Supplier;
+
+import static LanguageCore.LambdaExpressions.LambdaExpression.add;
 
 /*A method reference provides a way to refer to a method without executing it. It relates to lambda expressions because it, too,
 requires a target type context that consists of a compatible functional interface. When evaluated, a method reference also
@@ -13,22 +16,45 @@ class MethodReferences {
 
         IntHelper intHelper = new IntHelper();
 
+        // method references to a static method and an instance method
         IntMultiple staticIntMultiple = IntHelper::getStaticMultiple, intMultiple = intHelper::getMultiple;
+
+        //imp: 4 possibilities:
+        // Class::StaticMethod                          x -> Class::StaticMethod(x)
+        // variableInstance::instanceMethod             () -> variableInstance.instanceMethod()
+        // Class::instanceMethod                        x -> x.instanceMethod()
+        // Class::new                                   () -> new Class ()
+
+        System.out.println(add(10, 6, Math::addExact));
+        System.out.println(add(10, 6,
+            (t1, t2) -> {
+                  int addition = t1 + t2 + 1;
+                  System.out.println("Faulty addition");
+                  return addition;
+            }));
+
+        //Onenote: Method References
 
         System.out.println("staticIntMultiple.getMultipleOfNumber(5) = " + staticIntMultiple.getMultipleOfNumber(5));
         System.out.println("intMultiple.getMultipleOfNumber(5) = " + intMultiple.getMultipleOfNumber(5));
         intHelper.setNumber(100);
         System.out.println("After intHelper.setNumber(100), intMultiple.getMultipleOfNumber(5) = " + intMultiple.getMultipleOfNumber(5));
 
-        //imp: Reference to an instance method of an arbitrary object of a particular type
-        ProcessString compareIntHelper = String::toUpperCase;
+        final String fdf = "fdf";
+        ProcessStringInstance stringProcessor1 = fdf::toUpperCase;   // variableInstance::instanceMethod        () -> variableInstance.instanceMethod()
+        System.out.println(stringProcessor1.upper());
+        System.out.println("fdf = " + fdf);    // note, will not modify current string to upper case!
 
+        ProcessStringClass stringProcessor = String::toUpperCase;   // Class::instanceMethod                     x -> x.instanceMethod()
         List<String> stringList = new ArrayList<>();
         stringList.add("test1");
         stringList.add("test2");
-        for(String str : stringList) compareIntHelper.upper(str);
+        for(String str : stringList) stringProcessor.upper(str);
         //Alternatively, following works too:
         stringList.forEach(String::toUpperCase);   //behaves as if: for (T t : this) {action.accept(t);     see javadoc for forEach
+
+        Supplier<IntHelper> intHelperSupplier = IntHelper::new;     // Class::new         () -> new Class ()
+        IntHelper intHelper1 = intHelperSupplier.get();
 
         //imp: following is the deceleration of abstract method in IsGreaterOrEqual<T> interface- boolean isGreaterOrEqual(T invokingObject, T other);
         IsGreaterOrEqual<IntHelper> isGreater = IntHelper::isGreaterOrEqual;
@@ -104,8 +130,13 @@ interface IntMultiple{
 }
 
 @FunctionalInterface
-interface ProcessString{
+interface ProcessStringClass {
     String upper(String str);
+}
+
+@FunctionalInterface
+interface ProcessStringInstance{
+    String upper();
 }
 
 @FunctionalInterface

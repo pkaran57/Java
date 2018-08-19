@@ -1,6 +1,6 @@
 package LanguageCore.LambdaExpressions;
 
-import static java.lang.Math.*;
+import static java.lang.Math.random;
 
 public class LambdaExpression {
 
@@ -55,7 +55,7 @@ public class LambdaExpression {
     }
 
     // passing executable code as an argument to a method
-    private static <T> T add(T a1, T a2, Add<T> addMethod){
+    static <T> T add(T a1, T a2, Add<T> addMethod){
         T sum = null;
         try {
             sum = addMethod.add(a1, a2);
@@ -68,7 +68,11 @@ public class LambdaExpression {
     private static double thisCanBeModifiedByLambda;
 }
 
-// a functional interface is an interface that specifies only one abstract method
+/*
+a functional interface has exactly one abstract method. Since default methods have an implementation, they are not abstract. If an interface declares an abstract method overriding one of the
+public methods of java.lang.Object, that also does not count toward the interface's abstract method count since any implementation of the interface will have an implementation from
+java.lang.Object or elsewhere.
+*/
 @FunctionalInterface
 interface RandomNumberGenerator{
     double getRandomNumber();
