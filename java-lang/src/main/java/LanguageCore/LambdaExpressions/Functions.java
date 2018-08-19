@@ -26,18 +26,39 @@ class Functions {
         — Consumers — T in, nothing (void) out
         — Supplier<T> — Nothing in, T out
         — BinaryOperator<T> Two T's in, T out
+
+        imp: Functions can have the following:
+        1. higher order function which is a default method which returns a lambda expression. Example: or, and in Predicate ; andThen in Function
+        2. static methods in functional interface which return lambda expressions satisfying the abstract method of that interface. Example: identity in Function, equals in Predicate
          */
 
         Predicate<String> isNull = Objects::isNull;
         System.out.println(isNull.test(null));
 
-        Predicate<String> isNullOrEmpty = isNull.or(StringUtils::isEmpty);
+        Predicate<String> isNullOrEmpty = isNull.or(StringUtils::isEmpty);    //imp: or is a higher order function in Predicate
 
         System.out.println("isJoeNullOrEmpty = " + Utils.applyPredicate(NAME, isNullOrEmpty));
         System.out.println("isnullNullOrEmpty = " + Utils.applyPredicate(null, isNullOrEmpty));
 
+        Predicate<String> isEqual = Predicate.isEqual(NAME);
+        System.out.println("isEqual.test(NAME + 'e') - " + isEqual.test(NAME + 'e'));
+
         Function<String, char[]> convertIntoCharArray = String::toCharArray;
-        System.out.println("char array = " + Arrays.toString(Utils.applyFunction("lol", convertIntoCharArray)));
+        char[] charArray = Utils.applyFunction("lol", convertIntoCharArray);
+
+        Function<char[], char[]> addzToCharArray = chars -> {
+            char[] newChars = Arrays.copyOf(chars, chars.length + 1);
+            newChars[newChars.length - 1] = 'z';
+            return newChars;
+        };
+
+        Function<char[], char[]> add4ToCharArray = chars -> {
+            char[] newChars = Arrays.copyOf(chars, chars.length + 1);
+            newChars[newChars.length - 1] = '4';
+            return newChars;
+        };
+
+        System.out.println("char array = " + Arrays.toString(Utils.applyFunctions(charArray, addzToCharArray, add4ToCharArray)));
 
         BiFunction<Number, Number, Double> average = (num1, num2) -> ((num1.longValue() + num2.longValue()) / 2d);
         System.out.println("Average = " + average.apply(Integer.valueOf("21"), Integer.valueOf("20")));
@@ -48,9 +69,13 @@ class Functions {
             double currentSalary = employee.getSalary();
             employee.setSalary(currentSalary + (currentSalary * 0.1));
         };
+
+        Consumer<Employee> giveBonus = employee -> {
+            employee.setSalary(employee.getSalary() + 5000);
+        };
+
         List<Employee> salaryList = Collections.singletonList(employeeSupplier.get());
-        salaryList.forEach(giveRaise);
-        System.out.println("salaryList = " + salaryList);
+        salaryList.forEach(giveRaise.andThen(giveBonus).andThen(System.out::println));
     }
 
     private static class Utils {
@@ -61,6 +86,18 @@ class Functions {
 
         static <T,R> R applyFunction(T toApply, Function<T, R> function){
             return function.apply(toApply);
+        }
+
+        @SafeVarargs
+        static <T> T applyFunctions(T toApply, Function<T, T> ... functions){
+            Function<T,T> result = Function.identity();      // Function.identity() forms implementation for Function.apply(T t) such that t -> (t)
+            // above same as below
+            Function<T,T> result1 = t -> t;
+
+            for(Function<T,T> func : functions){
+                result = result.andThen(func);
+            }
+            return result.apply(toApply);
         }
     }
 
