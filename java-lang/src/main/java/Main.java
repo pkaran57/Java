@@ -7,6 +7,7 @@ import LanguageCore.Enumerations;
 import LanguageCore.ExceptionHandling;
 import LanguageCore.Generics.AverageCalculator;
 import LanguageCore.LambdaExpressions.LambdaExpression;
+import LanguageCore.Streams;
 import LanguageCore.oopdemo.CEO;
 import LanguageCore.oopdemo.Employee;
 import LanguageCore.oopdemo.abstractClass.Shape;
@@ -45,7 +46,7 @@ public class Main {
         AverageCalculator.genericsDemo();
         //Onenote: Generics
         new LambdaExpression().demo();
-        //Streams.demo();
+        Streams.demo();
     }
 
     //variables which are member of a class are given default values if not initialized
