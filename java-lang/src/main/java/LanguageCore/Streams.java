@@ -73,7 +73,6 @@ imp: turning streams into data structures:
 • Array (less common) — someStream.toArray(EntryType[]::new) • E.g., employeeStream.toArray(Employee[]::new)  NOTE: java will make an empty array and then the array is filled with elements
 Note — You normally do this only at the end, after you have done all the cool Stream operations
 
-
 imp: Imp Stream methods   // Onenote: Stream operations
 
 • findFirst()   - lazy evaluation
@@ -83,12 +82,13 @@ imp: Imp Stream methods   // Onenote: Stream operations
     • There is also a similar findAny method, which might be faster for parallel Streams.
   — findFirst is faster than it looks when paired with map or filter. More details in section on lazy evaluation, but idea is that map or filter know to only find a single match and then stop.
 
+• Reduce - reduction operations that take a Stream<T>, and combine or compare the entries to produce a single value of type T
+
 imp: mapping methods
 • mapToInt — Applies a function that produces an Integer, but the resultant Stream is an IntStream instead of a Stream<Integer>. Convenient because IntStream has zero-argument methods like sum, min, and max.
 • mapToDouble - Similar to mapToInt, but produces DoubleStream.
 • flatMap — Each function application produces a Stream, then the Stream elements are combined into a single Stream. For example, if company is a list of departments, this produces a list of all combined employees.
              company.flatMap(dept -> dept.employeeList().stream())
-
 */
 @Log4j2
 public class Streams {
@@ -129,7 +129,31 @@ public class Streams {
         log.info("sorted strings: {}", Arrays.stream(strings).distinct().sorted().collect(Collectors.toList()));
         log.info("Employees making most to least: {}", employeeList.stream().sorted(Comparator.comparingInt(Employee::getSalary).reversed().thenComparing(Employee::getName)).collect(Collectors.toList()));
 
+        // Reduce - reduction operations that take a Stream<T>, and combine or compare the entries to produce a single value of type T
+        // • Repeated combining — You start with a seed (identity) value, combine this value with the first entry of the Stream, combine the result with the second entry of the Stream, and so forth
+        // • reduce is particularly useful when combined with map or filter
+        // • Works in parallel if operator is associative and has no side effects
+        Optional<Employee> richest = employeeList.stream().reduce((e1, e2) -> e1.getSalary() - e2.getSalary() >= 0 ? e1 : e2);
+        log.debug("Richest employee = {}", richest.orElse(null));
 
+        OptionalInt sumInt = Arrays.stream(ints).mapToInt(num -> num).reduce(Math::addExact);  // Class::StaticMethod    x -> Class.StaticMethod(x)
+        log.debug("sumInt = {}", sumInt.orElse(Integer.MIN_VALUE));
+
+        final String[] words = {"My", "name", "is", "Tom", "."};
+        Optional<String> sentence = Arrays.stream(words).reduce(String::concat);    // Class::instanceMethod      x -> x.instanceMethod()
+        log.debug("sentence = " + (sentence.orElse("null")));
+
+        // Different ways of collecting
+        Arrays.stream(words).collect(Collectors.toList());
+        Arrays.stream(words).collect(Collectors.toSet());
+        Arrays.stream(words).collect(Collectors.joining(" "));      // note that this does not add " " at the beginning or at the end
+        Arrays.stream(words).collect(Collectors.toCollection(ArrayList::new));
+
+        Map<Boolean, List<Employee>> map = employeeList.stream().collect(Collectors.partitioningBy(e -> e.getSalary() >= 5000));
+        log.debug("boolean employee map - " + map.toString());
+
+        Map<String, List<Employee>> employeeNameMap = employeeList.stream().collect(Collectors.groupingBy(Employee::getName));
+        log.debug("name employee map - " + employeeNameMap.toString());
     }
 
     @Setter
