@@ -1,14 +1,16 @@
 package LanguageCore;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import lombok.extern.log4j.Log4j2;
 
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.*;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /*
 Characteristics of Streams:
@@ -154,12 +156,65 @@ public class Streams {
 
         Map<String, List<Employee>> employeeNameMap = employeeList.stream().collect(Collectors.groupingBy(Employee::getName));
         log.debug("name employee map - " + employeeNameMap.toString());
+
+        // parallel streams,   Onenote: Streams - Sequential vs Parallel streams
+         int[] randomIntsArray =
+        IntStream.generate(() -> new Random().nextInt(10000)).limit(10000000).toArray();
+        LocalTime startTime = LocalTime.now();
+        int sum = IntStream.of(randomIntsArray).parallel().map(num -> num * 100).sum();
+        log.debug("parallel addition time = {}, sum = {}", Duration.between(startTime, LocalTime.now()).toMillis(), sum);
+        startTime = LocalTime.now();
+        sum = IntStream.of(randomIntsArray).map(num -> num * 100).sum();
+        log.debug("Sequential addition time = {}, sum = {}", Duration.between(startTime, LocalTime.now()).toMillis(), sum);
+
+        /* imp: unbounded stream [Stream.generate(valueGenerator) or Stream.iterate(initialValue, valueTransformer)]
+        • Stream.generate(valueGenerator) Stream.generate lets you specify a Supplier. This Supplier is invoked each time the system needs a Stream element.
+            • Powerful when Supplier maintains state, but then won't work in parallel
+        • Stream.iterate(initialValue, valueTransformer) — Stream.iterate lets you specify a seed and a UnaryOperator f. The seed becomes the first element of the Stream,
+        f(seed) becomes the second element, f(second) becomes third element, etc.
+
+        imp: Why use unbounded streams?
+
+        The values are not calculated until they are needed, so you don't have to fill in the data in advance when you don't know how many entries you will need
+        • The point is not really that this is an "infinite" Stream, but that it is an unbounded "on the fly" Stream — one with no fixed size, where the values are calculated as you need them
+        • Caution — To avoid unterminated processing, you must eventually use a size-limiting operation like limit or findFirst (but not skip alone)
+        • E.g., calling "sort" or "count" directly on an infinite stream will crash your program
+
+        unbounded streams not usually suited for parallel streams
+        */
+
+        Stream<Employee> unboundedEmployeeStream = Stream.generate(Employee::new).limit(20);
+        // Stream<Employee> unboundedEmployeeStream = Stream.generate(Employee::new);
+        // Employee[] employees1 = unboundedEmployeeStream.toArray(Employee[]::new);    // DO NOT DO THIS, will run out of memory
+
+        Employee[] employees1 = unboundedEmployeeStream.toArray(Employee[]::new);
+        log.debug("employees1 size = " + employees1.length);
+
+        Stream<Employee> generate = Stream.generate(new EmployeeSalarySupplier()).limit(20);
+        log.info("Employee salaries - ");
+        generate.collect(Collectors.toList()).forEach(System.out::println);
+
+        Stream<Integer> integerStream = Stream.iterate(0, n -> n + 1).limit(20);
+        log.info("int stream with seed: ");
+        integerStream.forEach(System.out::println);
+    }
+
+    @NoArgsConstructor
+    public static class EmployeeSalarySupplier implements Supplier<Employee> {
+
+        private int salary;
+
+        @Override
+        public Employee get() {
+            return new Employee(salary++, "sameName");
+        }
     }
 
     @Setter
     @Getter
     @ToString
     @AllArgsConstructor
+    @NoArgsConstructor
     private static class Employee{
         private int salary;
         private String name;
