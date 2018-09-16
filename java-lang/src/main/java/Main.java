@@ -14,6 +14,7 @@ import LanguageCore.oopdemo.abstractClass.Shape;
 import LanguageCore.oopdemo.abstractClass.Square;
 import LanguageCore.oopdemo.interfaces.Atorvastatin;
 import LanguageCore.oopdemo.interfaces.GenericDrug;
+import libraries.LibDemo;
 
 import static java.lang.System.out;
 
@@ -47,6 +48,7 @@ public class Main {
         //Onenote: Generics
         new LambdaExpression().demo();
         Streams.demo();
+        LibDemo.demo();
     }
 
     //variables which are member of a class are given default values if not initialized

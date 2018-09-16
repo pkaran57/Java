@@ -196,7 +196,7 @@ public class Streams {
 
         Stream<Integer> integerStream = Stream.iterate(0, n -> n + 1).limit(20);
         log.info("int stream with seed: ");
-        integerStream.forEach(System.out::println);
+        integerStream.forEach(System.out::print);
     }
 
     @NoArgsConstructor
