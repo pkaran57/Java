@@ -31,15 +31,16 @@ public class Main {
 
         out.println("Do not need to call System since all static members of System class are imported by static import");
 
-        //Onenote : Read up to (including) Java language characteristics
+        //Onenote: Read up to (including) Java language characteristics
         variableAndLiterals();
         arrays();
         controlStatements();
         //Onenote: OOP [Access modifiers and (Packages and CLASSPATH)]
         oopDemo();
-    // Onenote: Anonymous Classes
-    // exception_handling();
-    // MultiThreading.main();
+        //Imp: test
+        //Onenote: Anonymous Classes
+        // exception_handling();
+        // MultiThreading.main();
         Enumerations.enumDemo();
         TypeWrappersAndAutoBoxing();
         Annotations.annotationsDemo();
@@ -64,7 +65,7 @@ public class Main {
         //i is converted from an int into string before concatenation !
         System.out.println("i is " + i + " and j is " + jjjj + " and object o is " + o);
 
-        //Onenote : Read java basics
+        //Onenote: Read java basics
 
         //Topic : Literals
         i = 01;     // Octal values are denoted in Java by a leading zero
@@ -329,7 +330,7 @@ public class Main {
         employee.getObjectType();
 
         //Onenote: OOP [Abstract Classes vs Interface]
-        //Onenote : OOP[Object class]
+        //Onenote: OOP[Object class]
 
         Shape shape = new Square("I am a square !!!", 5);
         shape.printShapeDescription();
@@ -356,7 +357,7 @@ public class Main {
 
         System.out.println("************");
         drug2.printInfo();      //imp: will call Atorvastatin's printInfo
-        //Onenote : OOP [interface tips]
+        //Onenote: OOP [interface tips]
     }
 
     private static void exception_handling(){

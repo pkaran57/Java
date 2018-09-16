@@ -172,18 +172,18 @@ public class ExceptionHandling {
     /* *************************************************
     TOPIC : Finally
 
-    Onenote : Finally under Exception Handling
+    Onenote: Finally under Exception Handling
      *************************************************/
 
     /* *************************************************
     TOPIC : Creating custom exceptions
 
-    Onenote : Creating custom exceptions under Exception Handling
+    Onenote: Creating custom exceptions under Exception Handling
      *************************************************/
 
     /* *************************************************
     TOPIC : Chained Exceptions
 
-    Onenote : Chained Exceptions under Exception Handling
+    Onenote: Chained Exceptions under Exception Handling
      *************************************************/
 }
