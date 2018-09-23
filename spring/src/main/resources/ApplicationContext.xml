@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    When declaring a Spring XSD location, it’s a best practice to not include the version number. This resolution is already handled for you by Spring as the versioned XSD file is configured
+    through a pointer in the spring.schemas file. This file resides in the spring-beans module defined as a dependency in your project. This also prevents you from having to modify all of your bean
+    files when upgrading to a new version of Spring.
+-->
+
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!-- adding the component scan below enables Spring based annotations to be used along with XML configuration-->
-    <context:component-scan base-package="com.ker.spring.*"/>
+<!--
+    The <context:component-scan> tag tells Spring to scan the code for injectable beans annotated with @Component, @Controller, @Repository, and @Service as well as supporting the @Autowired, @Inject, and
+    @Resource annotations under the package (and all its subpackages) specified.
+
+    The tag below tells Spring to scan the package as specified but omit the classes that were assignable to the type as specified in the expression (can be either a class or an interface).
+    Besides the exclude filter, you can also use an include filter. And for the type, you can use annotation, regex, assignable, AspectJ, or custom
+    (with your own filter class that implements org.springframework.core.type.filter.TypeFilter) as the filter criteria. The expression format depends on the type you specified.
+-->
+    <context:component-scan base-package="com.ker.spring.*">
+        <!--<context:exclude-filter type="assignable" expression="com.example.NotAService"/>-->
+    </context:component-scan>
 
     <bean id="bubbleSort" class="com.ker.spring.Sort.BubbleSort" scope="prototype"/>
     <bean id="selectionSort" class="com.ker.spring.Sort.SelectionSort" primary="true"/>

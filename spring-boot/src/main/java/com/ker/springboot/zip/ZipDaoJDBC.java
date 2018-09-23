@@ -31,7 +31,7 @@ public class ZipDaoJDBC {
         return jdbcTemplate.update("delete from zip_data where zip = ?", new Object[]{zipToDelete});
     }
 
-    int addZip(final int zip, final String locationData){
+    public int addZip(final int zip, final String locationData){
         return jdbcTemplate.update("insert into zip_data (zip, location_info) values (?,?)", new Object[]{zip, locationData});
     }
 

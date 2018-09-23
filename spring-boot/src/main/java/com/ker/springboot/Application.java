@@ -1,6 +1,7 @@
 package com.ker.springboot;
 
 import com.ker.springboot.zip.Zip;
+import com.ker.springboot.zip.ZipDaoJDBC;
 import com.ker.springboot.zip.ZipDaoJPA;
 import com.ker.springboot.zip.ZipDaoSpringJpa;
 import lombok.extern.log4j.Log4j2;
@@ -12,11 +13,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.PropertySource;
 
 /*
-What are the beans?
-Classes market with @Component
-
-What are the dependencies for a bean?
-fields marked with @Autowired annotation
+Imp: Two types of IOC:
+1. Dependency Lookup - Obtaining bean from Application context
+2. Dependency Injection (Preferred) - Example: @Autowire (filed injection), constructor or setter injection
  */
 @Log4j2
 // Onenote: Auto-configuration
@@ -26,11 +25,27 @@ fields marked with @Autowired annotation
 @PropertySource(value = {"classpath:application.properties", "classpath:application.yml"})     // application.properties is automatically recognised by Spring Boot
 public class Application implements CommandLineRunner {
 
-  @Autowired
-  ZipDaoJPA zipDaoJPA;
+/*
+  Imp: 3 ways in which dependency can be injected: 1. Constructor injection, 2. Setter injection, 3. @Autowired
+  In general, you should choose an injection type based on your use case. Setter-based injection allow dependencies to be swapped out without creating new objects and also lets your class
+  choose appropriate defaults without the need to explicitly inject an object. Constructor injection is a good choice when you want to ensure that dependencies are being passed to a component
+  and when designing for immutable objects.
+*/
 
   @Autowired
   ZipDaoSpringJpa zipDaoSpringJpa;
+
+  private ZipDaoJDBC zipDaoJDBC;
+  private ZipDaoJPA zipDaoJPA;
+
+  public Application(final ZipDaoJPA zipDaoJPA) {
+    this.zipDaoJPA = zipDaoJPA;
+  }
+
+  @Autowired
+  public void setZipDaoJDBC(ZipDaoJDBC zipDaoJDBC) {
+    this.zipDaoJDBC = zipDaoJDBC;
+  }
 
   public static void main(String[] args) {
     System.out.println("Before app start...");
@@ -41,6 +56,8 @@ public class Application implements CommandLineRunner {
   @Override
   public void run(String... args) throws Exception {
     log.info("Will be invoked as soon as the application is launched. Since the method is not static, can autowire beans.");
+
+    zipDaoJDBC.addZip(23892, "randomLocation");
 
     log.debug("Info for all zips : {}", zipDaoJPA.getDataForAllZips());
     zipDaoJPA.addZip(4545, "blha");
