@@ -18,6 +18,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
+import java.util.List;
+
 /*
 Imp: Two types of IOC:
 1. Dependency Lookup - Obtaining bean from Application context
@@ -88,6 +90,14 @@ public class Application implements CommandLineRunner {
   public int intVal(){
     return 99;
   }
+
+  /*
+  IMP: Collection injection
+  Often your beans need access to collections of objects rather than just individual beans or values. Therefore, it should come as no surprise that Spring allows you to inject a collection
+  of objects into one of your beans. Using the collection is simple: you choose either <list>, <map>, <set>, or <props> to represent a List, Map, Set, or Properties instance.
+  */
+  @Autowired
+  List<String> stringList;
 
   public static void main(String[] args) {
     System.out.println("Before app start...");
