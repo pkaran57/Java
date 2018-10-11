@@ -7,6 +7,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Log4j2
 @Repository
 public class ZipDaoJDBC {
@@ -37,5 +39,9 @@ public class ZipDaoJDBC {
 
     int updateZipData(final int zip, final String newLocationData){
         return jdbcTemplate.update("update zip_data set location_info = ? where zip = ?", newLocationData, zip);
+    }
+
+    List<Zip> finalAllZips(){
+        return jdbcTemplate.query("select * from zip_data", new BeanPropertyRowMapper<>(Zip.class));
     }
 }
