@@ -33,6 +33,8 @@ public class CEO extends Employee{
 
     //this method hides method in superclass, must not have weaker access compared to overridden method
     //Onenote: Covariant returns
+    // This means an overridden method may have a more specific return type. That is, as long as the new return type is assignable to the return type of the method you are overriding, it's allowed.
+    @Override
     public void getObjectType(){
 
         //super is used to access hidden members of superclass
