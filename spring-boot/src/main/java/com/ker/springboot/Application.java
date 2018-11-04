@@ -76,7 +76,7 @@ public class Application implements CommandLineRunner {
     log.debug("Using Spel, testInt = {}", testInt);
   }
 
-  @Bean
+  @Bean   // name of method = bean id
   public String str1(){
     return "str1";
   }
