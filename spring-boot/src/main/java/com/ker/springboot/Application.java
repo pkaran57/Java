@@ -37,7 +37,6 @@ TomcatServletWebServerFactory (unless you have defined your own ServletWebServer
 //@ComponentScan(value = {"com.ker.springboot"}) // explicitly specifying packages to search for components
 @PropertySource(value = {"classpath:application.properties", "classpath:application.yml"})     // application.properties is automatically recognised by Spring Boot
 //@ImportResource(locations = {"classpath:spring/app-context-xml.xml"})   // Indicates one or more resources containing bean definitions to import.
-@Configuration
 public class Application implements CommandLineRunner {
 
 /*
@@ -140,6 +139,5 @@ public class Application implements CommandLineRunner {
       private String name;
       private int age;
     }
-
   }
 }

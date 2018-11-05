@@ -45,6 +45,11 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
@@ -76,12 +81,24 @@
 			<artifactId>spring-data-rest-hal-browser</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<!--END: Spring dependencies-->
+<!--
+Benefits of DevTools:
+
+ Automatic application restart when code changes
+ Automatic browser refresh when browser-destined resources (such as templates, JavaScript, stylesheets, and so on) change
+ Automatic disable of template caches
+ Built in H2 Console if the H2 database is in use
+
+LiveReload has browser plugins for Google Chrome, Safari, and Firefox browsers
+-->
+
+		<!--<dependency>-->
+			<!--<groupId>org.springframework.boot</groupId>-->
+			<!--<artifactId>spring-boot-devtools</artifactId>-->
+			<!--<optional>true</optional>-->
+		<!--</dependency>-->
+
+<!--END: Spring dependencies-->
 
 		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver for AOP programming -->
 		<dependency>
