@@ -7,6 +7,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 @Log4j2
@@ -43,5 +45,13 @@ public class ZipDaoJDBC {
 
     List<Zip> finalAllZips(){
         return jdbcTemplate.query("select * from zip_data", new BeanPropertyRowMapper<>(Zip.class));
+    }
+
+    List<Zip> finalAllZips2(){
+        return jdbcTemplate.query("select * from zip_data", this::zipRowMapper);
+    }
+
+    private Zip zipRowMapper(final ResultSet resultSet, int rowNumber) throws SQLException {
+        return Zip.builder().zip(resultSet.getInt("ZIP")).locationInfo(resultSet.getString("LOCATION_INFO")).build();
     }
 }
