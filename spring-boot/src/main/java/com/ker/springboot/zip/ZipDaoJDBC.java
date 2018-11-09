@@ -4,6 +4,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -41,6 +42,12 @@ public class ZipDaoJDBC {
 
     int updateZipData(final int zip, final String newLocationData){
         return jdbcTemplate.update("update zip_data set location_info = ? where zip = ?", newLocationData, zip);
+    }
+
+    int updateZipData2(final int zip, final String newLocationData){
+        Zip zipToUpdate = Zip.builder().zip(zip).locationInfo(newLocationData).build();
+        String query = "update zip_data set location_info = :locationInfo where zip = :zip";
+        return namedParameterJdbcTemplate.update(query, new BeanPropertySqlParameterSource(zipToUpdate));
     }
 
     List<Zip> finalAllZips(){
