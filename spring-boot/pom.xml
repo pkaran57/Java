@@ -11,6 +11,18 @@
 	<name>Spring Boot</name>
 	<description>Demo project for Spring Boot</description>
 
+	<!-- Inherit defaults from Spring Boot. It also provides a dependency-management section so that you can omit version tags for “blessed” dependencies.
+
+	The parent project provides the following features:
+
+		Java 1.8 as the default compiler level.
+		UTF-8 source encoding.
+		A Dependency Management section, inherited from the spring-boot-dependencies pom, that manages the versions of common dependencies. This dependency management lets you omit <version> tags for those dependencies when used in your own pom.
+		An execution of the repackage goal with a repackage execution id.
+		Sensible resource filtering.
+		Sensible plugin configuration (exec plugin, Git commit ID, and shade).
+		Sensible resource filtering for application.properties and application.yml including profile-specific files (for example, application-dev.properties and application-dev.yml)
+	-->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -81,6 +93,14 @@
 			<artifactId>spring-data-rest-hal-browser</artifactId>
 		</dependency>
 
+		<!--When upgrading to a new feature release, some properties may have been renamed or removed. Spring Boot provides a way to analyze your application’s environment and print diagnostics-->
+		<!--at startup, but also temporarily migrate properties at runtime for you. Once you’re done with the migration, please make sure to remove this module from your project’s dependencies.-->
+		<!--<dependency>-->
+			<!--<groupId>org.springframework.boot</groupId>-->
+			<!--<artifactId>spring-boot-properties-migrator</artifactId>-->
+			<!--<scope>runtime</scope>-->
+		<!--</dependency>-->
+
 <!--
 Benefits of DevTools:
 
@@ -98,7 +118,7 @@ LiveReload has browser plugins for Google Chrome, Safari, and Firefox browsers
 			<!--<optional>true</optional>-->
 		<!--</dependency>-->
 
-<!--END: Spring dependencies-->
+	<!--END: Spring dependencies-->
 
 		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver for AOP programming -->
 		<dependency>
@@ -137,6 +157,8 @@ LiveReload has browser plugins for Google Chrome, Safari, and Firefox browsers
 	<build>
 		<plugins>
 			<plugin>
+				<!--The Spring Boot Maven Plugin provides Spring Boot support in Maven, letting you package executable jar or war archives and run an application “in-place”.
+				If you use the Spring Boot starter parent pom, you need to add only the plugin. There is no need to configure it unless you want to change the settings defined in the parent.-->
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
