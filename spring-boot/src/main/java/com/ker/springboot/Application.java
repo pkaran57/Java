@@ -32,8 +32,8 @@ TomcatServletWebServerFactory (unless you have defined your own ServletWebServer
  */
 @Log4j2
 // Onenote: Auto-configuration
-@SpringBootApplication // initializes application context, enables auto-configuration, scans the package and sub-packages that it is defined in
-// Where does Spring search for Beans? Spring automatically checks the package (i.e. com.ker.springboot) and the sub-packages for components (i.e. component scan)
+// initializes application context, enables auto-configuration, scans the package and sub-packages that it is defined in
+@SpringBootApplication//(exclude = {Exclude.class}) <-- to exclude class from auto-configuration //
 //@ComponentScan(value = {"com.ker.springboot"}) // explicitly specifying packages to search for components
 @PropertySource(value = {"classpath:application.properties", "classpath:application.yml"})     // application.properties is automatically recognised by Spring Boot
 //@ImportResource(locations = {"classpath:spring/app-context-xml.xml"})   // Indicates one or more resources containing bean definitions to import.
