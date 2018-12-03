@@ -3,10 +3,12 @@
     #2. Searching directory
     #3. Autowiring by type from bean
 logging.level:
- root: WARN
- org.springframework: INFO
- com.ker.springboot: TRACE
- org.hibernate.SQL: DEBUG
- org.hibernate.type: TRACE
+ root: warn
+ org:
+  springframework.*: info
+  springframework.boot.devtools: trace
+ com.ker.springboot: trace
+ org.hibernate.SQL: debug
+ org.hibernate.type: trace
 
 dev.test.url: http://dev-test.com

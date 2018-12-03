@@ -112,11 +112,11 @@ Benefits of DevTools:
 LiveReload has browser plugins for Google Chrome, Safari, and Firefox browsers
 -->
 
-		<!--<dependency>-->
-			<!--<groupId>org.springframework.boot</groupId>-->
-			<!--<artifactId>spring-boot-devtools</artifactId>-->
-			<!--<optional>true</optional>-->
-		<!--</dependency>-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
 
 	<!--END: Spring dependencies-->
 

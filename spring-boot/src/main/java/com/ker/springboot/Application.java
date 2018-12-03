@@ -100,6 +100,7 @@ public class Application implements CommandLineRunner {
 
   public static void main(String[] args) {
     System.out.println("Before app start...");
+    // The SpringApplicationBuilder lets you chain together multiple method calls and includes parent and child methods that let you create a hierarchy
     ApplicationContext applicationContext = SpringApplication.run(Application.class, args);
     String str2 = (String) applicationContext.getBean("str2");
     log.debug("Str2 = {}", str2);
