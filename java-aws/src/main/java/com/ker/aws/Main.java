@@ -2,7 +2,6 @@ package com.ker.aws;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.PropertySource;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.CreateBucketRequest;
@@ -11,7 +10,6 @@ import software.amazon.awssdk.services.s3.model.ListBucketsRequest;
 
 @Slf4j
 @SpringBootApplication
-@PropertySource(value = "classpath:application.yml")
 public class Main {
 
     public static void main(String[] args) {
