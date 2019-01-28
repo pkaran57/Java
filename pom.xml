@@ -20,6 +20,7 @@
         <module>java-lang</module>
         <module>spring-boot</module>
         <module>spring</module>
+        <module>java-aws</module>
     </modules>
 
     <build>

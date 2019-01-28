@@ -1,0 +1,3 @@
+logging.level:
+  com.ker.aws: info
+  software.amazon.awssdk: info
