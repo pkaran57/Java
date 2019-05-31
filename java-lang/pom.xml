@@ -42,9 +42,9 @@
     Or they can be used by plugins as default values.
     Each plugin goal has arguments associated with it. To see all properties, use: mvn help:describe -Dcmd:cpmpiler:compile -Ddetail-->
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.compilerVersion>11</maven.compiler.compilerVersion>
 
         <trueValue>true</trueValue>
         <falseValue>false</falseValue>
@@ -85,6 +85,11 @@
         -->
         <!--Use mvn help:describe -Dcmd=deploy to see all the goals of various plugins bound to the deploy phase. Also shows prior phases that will be executed-->
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
@@ -198,7 +203,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.2</version>
-            <scope>provided</scope>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
