@@ -50,6 +50,7 @@
         <falseValue>false</falseValue>
         <!--Set this to "true" to ignore a failure during testing. Its use is NOT RECOMMENDED, but quite convenient on occasions-->
         <maven.test.failure.ignore>${trueValue}</maven.test.failure.ignore>
+        <lombok.version>1.18.8</lombok.version>
     </properties>
 
     <!-- repo information can also be specified at user / maven installation level by modifying settings.xml file
@@ -89,6 +90,15 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -122,7 +132,12 @@
                     <reportOutputDirectory>${project.build.directory}/javadocs</reportOutputDirectory>
                 </configuration>
             </plugin>
-
+            <!-- execute maven-dependency-plugin:3.1.1:resolve to see all module names currently on classpath -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.1</version>
+            </plugin>
         </plugins>
 
         <pluginManagement>
@@ -198,14 +213,12 @@
             <version>2.11.0</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.2</version>
+            <version>${lombok.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>

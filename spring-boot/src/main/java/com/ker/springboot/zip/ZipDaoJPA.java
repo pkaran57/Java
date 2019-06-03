@@ -1,6 +1,6 @@
 package com.ker.springboot.zip;
 
-import lombok.extern.log4j.Log4j2;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -10,11 +10,11 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
 
-@Log4j2
 @Repository
 @Transactional
 public class ZipDaoJPA {
 
+    private static final Logger log = org.apache.logging.log4j.LogManager.getLogger(ZipDaoJPA.class);
     @PersistenceContext  // entity manager is interface to persistence context
     @Autowired
     EntityManager entityManager;

@@ -1,6 +1,6 @@
-FROM openjdk:8-alpine
+FROM openjdk:11-slim
 
-RUN addgroup -S appgroup && adduser -S -G appgroup appuser
+RUN addgroup --system --gid 500 apps && adduser --system --shell /bin/bash --gid 500 appuser
 USER appuser
 
 WORKDIR /usr/myapp
