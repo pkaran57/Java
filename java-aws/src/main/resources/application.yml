@@ -1,3 +1,8 @@
 logging.level:
-  com.ker.aws: info
-  software.amazon.awssdk: info
+  root: INFO
+  com.ker.aws: DEBUG
+  software:
+    amazon:
+      awssdk:
+        profiles:
+          internal: ERROR

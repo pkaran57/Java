@@ -1,33 +1,34 @@
 package com.ker.aws;
 
+import com.ker.aws.dynamo.Dynamo;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import software.amazon.awssdk.regions.Region;
-import software.amazon.awssdk.services.s3.S3Client;
-import software.amazon.awssdk.services.s3.model.CreateBucketRequest;
-import software.amazon.awssdk.services.s3.model.CreateBucketResponse;
-import software.amazon.awssdk.services.s3.model.ListBucketsRequest;
 
 @Slf4j
 @SpringBootApplication
-public class Main {
+public class Main implements CommandLineRunner {
 
-    public static void main(String[] args) {
-        System.setProperty("aws.accessKeyId", "");
-        System.setProperty("aws.secretAccessKey", "");
+    @Autowired
+    private Dynamo dynamo;
 
-        try(S3Client s3Client = S3Client.builder()
-                .region(Region.US_WEST_2)
-                .build()) {
+  /**
+   * AWS SDK 2.0 doc - https://docs.aws.amazon.com/sdk-for-java/v2/developer-guide/welcome.html
+   * Set Up AWS Credentials and Region for Development - https://docs.aws.amazon.com/sdk-for-java/v2/developer-guide/setup-credentials.html
+   * Working with AWS Credentials - https://docs.aws.amazon.com/sdk-for-java/v2/developer-guide/credentials.html
+   * AWS Region selection - https://docs.aws.amazon.com/sdk-for-java/v2/developer-guide/java-dg-region-selection.html
+   */
+  public static void main(String[] args) {
+      System.setProperty("aws.accessKeyId", "test");
+      System.setProperty("aws.secretAccessKey", "test");
 
-            final String BUCKET_NAME = "ker-bucket";
+      SpringApplication.run(Main.class, args);
+    }
 
-            s3Client.listBuckets(ListBucketsRequest.builder().build());
-
-            CreateBucketRequest createBucketRequest = CreateBucketRequest.builder().bucket(BUCKET_NAME).build();
-            CreateBucketResponse createBucketResponse = s3Client.createBucket(createBucketRequest);     // http://ker-bucket.s3.amazonaws.com/
-
-            log.info(createBucketResponse.toString());
-        }
+    @Override
+    public void run(String... args) throws Exception {
+        dynamo.demo();
     }
 }
