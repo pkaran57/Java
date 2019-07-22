@@ -17,20 +17,25 @@ public class Dynamo {
     private DynamoRepo dynamoRepo;
 
     public void demo() throws ExecutionException, InterruptedException {
-        listAllTablesMoreThan100();
+        normalOperations();
     }
 
     private void normalOperations() throws ExecutionException, InterruptedException {
         dynamoRepo.deleteTable(TABLE_NAME);
         dynamoRepo.createTable(TABLE_NAME);
+        dynamoRepo.describeTable(TABLE_NAME);
         dynamoRepo.listAllTables();
         dynamoRepo.deleteTable(TABLE_NAME);
     }
 
-    private void listAllTablesMoreThan100() throws ExecutionException, InterruptedException {
-        for(int i = 0; i < 150; i++) {
+    /**
+     * The purpose of this method is to test the 'lastEvaluatedTableName' on list table request
+     */
+    private void createAndList100Tables() throws ExecutionException, InterruptedException {
+        for(int i = 0; i < 101; i++) {
             dynamoRepo.createTable(RandomStringUtils.randomAlphabetic(5, 50));
         }
-        dynamoRepo.listAllTables();
+        log.info("Done creating tables!");
+        log.info("Table exists - {}", dynamoRepo.tableExist("does not"));
     }
 }

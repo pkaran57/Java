@@ -58,6 +58,11 @@ class DynamoRepo {
         log.info("All tables in DB - {}", listTablesResponseCompletableFuture.get());
     }
 
+    public void describeTable(final String tableName) throws ExecutionException, InterruptedException {
+        DescribeTableRequest describeTableRequest = DescribeTableRequest.builder().tableName(tableName).build();
+        log.info("Info about table {} = {}",tableName, asyncClient.describeTable(describeTableRequest).get());
+    }
+
     public void deleteTable(final String tableName) throws ExecutionException, InterruptedException {
         if(tableExist(tableName)) {
             log.info("Delete '{}' table response - {}", tableName, asyncClient.deleteTable(DeleteTableRequest.builder().tableName(tableName).build()).get());
@@ -79,7 +84,7 @@ class DynamoRepo {
             } else {
                 if(!StringUtils.isEmpty(response.lastEvaluatedTableName())) {
                     try {
-                        return tableExist(tableName, lastEvaluatedTableName);
+                        return tableExist(tableName, response.lastEvaluatedTableName());
                     } catch (InterruptedException | ExecutionException e) {
                         throw new RuntimeException("Encountered an error while determining if a table exist or not", e);
                     }
