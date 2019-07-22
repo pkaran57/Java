@@ -6,6 +6,8 @@ import org.springframework.util.StringUtils;
 import software.amazon.awssdk.services.dynamodb.DynamoDbAsyncClient;
 import software.amazon.awssdk.services.dynamodb.model.*;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -14,6 +16,8 @@ import java.util.concurrent.ExecutionException;
 class DynamoRepo {
 
     private final DynamoDbAsyncClient asyncClient;
+
+    // Table operations
 
     public DynamoRepo(final DynamoDbAsyncClient asyncClient) {
         this.asyncClient = asyncClient;
@@ -93,5 +97,26 @@ class DynamoRepo {
                 }
             }
         }).get();
+    }
+
+    // Item operations
+
+    public void putItem(final String tableName) throws ExecutionException, InterruptedException {
+        Map<String, AttributeValue> stringAttributeValueMap = new HashMap<>();
+        stringAttributeValueMap.put("Gender", AttributeValue.builder().s("M").build());
+        stringAttributeValueMap.put("Name", AttributeValue.builder().s("Harsh").build());
+
+        PutItemRequest putItemRequest = PutItemRequest.builder().tableName(tableName).item(stringAttributeValueMap).build();
+        log.info("Added following item to table - {}", asyncClient.putItem(putItemRequest).get());
+    }
+
+    public void getItem(final String tableName) throws ExecutionException, InterruptedException {
+        Map<String, AttributeValue> stringAttributeValueMap = new HashMap<>();
+        stringAttributeValueMap.put("Gender", AttributeValue.builder().s("M").build());
+        stringAttributeValueMap.put("Name", AttributeValue.builder().s("Harsh").build());
+
+        GetItemRequest getItemRequest = GetItemRequest.builder().tableName(tableName).key(stringAttributeValueMap).build();
+        final GetItemResponse getItemResponse = asyncClient.getItem(getItemRequest).get();
+        log.info("Got the following items from DB - {}", getItemResponse.item());
     }
 }

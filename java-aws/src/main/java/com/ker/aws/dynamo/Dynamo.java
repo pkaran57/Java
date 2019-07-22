@@ -25,6 +25,10 @@ public class Dynamo {
         dynamoRepo.createTable(TABLE_NAME);
         dynamoRepo.describeTable(TABLE_NAME);
         dynamoRepo.listAllTables();
+
+        dynamoRepo.putItem(TABLE_NAME);
+        dynamoRepo.getItem(TABLE_NAME);
+
         dynamoRepo.deleteTable(TABLE_NAME);
     }
 
