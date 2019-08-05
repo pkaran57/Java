@@ -1,6 +1,7 @@
 package com.ker.aws;
 
 import com.ker.aws.dynamo.Dynamo;
+import com.ker.aws.s3.S3;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,6 +14,9 @@ public class Main implements CommandLineRunner {
 
     @Autowired
     private Dynamo dynamo;
+
+    @Autowired
+    private S3 s3;
 
   /**
    * AWS SDK 2.0 doc - https://docs.aws.amazon.com/sdk-for-java/v2/developer-guide/welcome.html
@@ -29,6 +33,7 @@ public class Main implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        dynamo.demo();
+        //dynamo.demo();
+        s3.demo();
     }
 }

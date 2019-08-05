@@ -8,7 +8,7 @@ import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import java.net.URI;
 
 @org.springframework.context.annotation.Configuration
-public class Configuration {
+class DynamoConfig {
 
     /**
      * Client Lifecycle - Service clients in the SDK are thread-safe. For best performance, treat them as long-lived objects. Each client has its own connection pool resource
@@ -18,7 +18,7 @@ public class Configuration {
      * NOTE: Spring will call DynamoDbAsyncClient.close() for us automatically!
      */
     @Bean
-    public DynamoDbAsyncClient asyncClient() {
+    public DynamoDbAsyncClient asyncDynamoClient() {
         return DynamoDbAsyncClient.builder()
                 .endpointOverride(URI.create("http://localhost:8000"))
                 .region(Region.US_WEST_2)
@@ -29,7 +29,7 @@ public class Configuration {
      * Spring will call DynamoDbClient.close() to cleanup for us
      */
     @Bean
-    public DynamoDbClient client() {
+    public DynamoDbClient dynamoClient() {
         return DynamoDbClient.create();   //  It uses the default provider chain to load credentials and the AWS Region.
     }
 }
