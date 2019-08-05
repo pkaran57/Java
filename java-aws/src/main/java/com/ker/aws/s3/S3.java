@@ -26,7 +26,7 @@ public class S3 {
 
     public void demo() throws ExecutionException, InterruptedException {
         createBucket(TEST_BUCKET);
-        putObject(TEST_BUCKET, "testKey", "testContent1");
+        putObject(TEST_BUCKET, "clientCode/session-ID/encounterName", "benefitResponse");
         listObjects(TEST_BUCKET);
     }
 
