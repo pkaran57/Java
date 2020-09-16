@@ -12,7 +12,6 @@ import java.util.concurrent.ExecutionException;
 @Component
 public class CloudSearch {
 
-    private static final String SEARCH_DOMAIN_NAME = "cost-test";
     private final CloudSearchAsyncClient cloudSearchAsyncClient;
 
     public CloudSearch(CloudSearchAsyncClient cloudSearchAsyncClient) {
