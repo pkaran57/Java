@@ -21,7 +21,6 @@
         <module>spring-boot</module>
         <module>spring</module>
         <module>java-aws</module>
-        <module>java-aws-lambda</module>
     </modules>
 
     <build>

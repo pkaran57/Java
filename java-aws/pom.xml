@@ -44,6 +44,8 @@
         </plugins>
     </build>
 
+    <!--https://aws.amazon.com/blogs/developer/managing-dependencies-with-aws-sdk-for-java-bill-of-materials-module-bom/-->
+    <!--https://docs.aws.amazon.com/sdk-for-java/v2/developer-guide/setup-project-maven.html-->
     <dependencyManagement>
         <dependencies>
             <dependency>
