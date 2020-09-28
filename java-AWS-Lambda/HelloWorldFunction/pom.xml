@@ -26,10 +26,12 @@
           <artifactId>aws-lambda-java-events</artifactId>
           <version>3.1.0</version>
         </dependency>
+
+        <!-- test dependencies -->
         <dependency>
           <groupId>junit</groupId>
           <artifactId>junit</artifactId>
-          <version>4.12</version>
+          <version>4.13</version>
           <scope>test</scope>
         </dependency>
     </dependencies>

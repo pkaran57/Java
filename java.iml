@@ -9,4 +9,25 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
+  <component name="deploySettings">
+    <option name="samConfigs">
+      <map>
+        <entry key="java-AWS-Lambda\template.yaml">
+          <value>
+            <DeploySamConfig>
+              <option name="autoExecute" value="true" />
+              <option name="bucketName" value="lambda-functions-from-local" />
+              <option name="enabledCapabilities">
+                <list>
+                  <option value="IAM" />
+                  <option value="NAMED_IAM" />
+                </list>
+              </option>
+              <option name="stackName" value="int-adder" />
+            </DeploySamConfig>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
 </module>

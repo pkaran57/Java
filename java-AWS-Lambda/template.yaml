@@ -5,39 +5,52 @@ Description: >
 
   Sample SAM Template for java-AWS-Lambda
 
+# Globals is a section in your SAM template to define properties common to all your Serverless Function and APIs.
+# All the AWS::Serverless::Function and AWS::Serverless::Api resources will inherit the properties defined here.
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Function:
     Timeout: 20
+    Runtime: java11
+    MemorySize: 512
 
+# Resource types:
+# AWS::Serverless::Function - Creates a Lambda function, IAM execution role, and event source mappings which trigger the function.
+# AWS::Serverless::Api - Creates a collection of Amazon API Gateway resources and methods that can be invoked through HTTPS endpoints.
+# AWS::Serverless::HttpApi - Creates a collection of Amazon API Gateway resources and methods that can be invoked through HTTPS endpoints.
+# AWS::Serverless::Application - Embeds a serverless application from the AWS Serverless Application Repository or from an Amazon S3 bucket as a nested application. Nested applications are deployed as nested stacks, which can contain multiple other resources, including other AWS::Serverless::Application resources.
+# AWS::Serverless::SimpleTable - creates a DynamoDB table with a single attribute primary key. It is useful when data only needs to be accessed via a primary key. To use the more advanced functionality of DynamoDB, use an AWS::DynamoDB::Table resource instead.
+# AWS::Serverless::LayerVersion - Creates a Lambda LayerVersion that contains library or runtime code needed by a Lambda Function. When a Serverless LayerVersion is transformed, SAM also transforms the logical id of the resource so that old LayerVersions are not automatically deleted by CloudFormation when the resource is updated.
 Resources:
   HelloWorldFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
+      FunctionName: IntAdder
+      Role: arn:aws:iam::399897631251:role/lambda-custom-role
       CodeUri: HelloWorldFunction
-      Handler: helloworld.App::handleRequest
-      Runtime: java11
-      MemorySize: 512
+      Handler: helloworld.IntAdder::handleRequest
       Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
         Variables:
           PARAM1: VALUE
-      Events:
-        HelloWorld:
-          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
-          Properties:
-            Path: /hello
-            Method: get
+      Tracing: Active
+      # Event source types: https://github.com/aws/serverless-application-model/blob/master/versions/2016-10-31.md#event-source-types
+#      Events:
+#        HelloWorld:
+#          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+#          Properties:
+#            Path: /hello
+#            Method: get
 
-Outputs:
-  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
-  # Find out more about other implicit resources you can reference within SAM
-  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
-  HelloWorldApi:
-    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
-  HelloWorldFunction:
-    Description: "Hello World Lambda Function ARN"
-    Value: !GetAtt HelloWorldFunction.Arn
-  HelloWorldFunctionIamRole:
-    Description: "Implicit IAM Role created for Hello World function"
-    Value: !GetAtt HelloWorldFunctionRole.Arn
+#Outputs:
+#  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+#  # Find out more about other implicit resources you can reference within SAM
+#  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+#  HelloWorldApi:
+#    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
+#    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
+#  HelloWorldFunction:
+#    Description: "Hello World Lambda Function ARN"
+#    Value: !GetAtt HelloWorldFunction.Arn
+#  HelloWorldFunctionIamRole:
+#    Description: "Implicit IAM Role created for Hello World function"
+#    Value: !GetAtt HelloWorldFunctionRole.Arn
