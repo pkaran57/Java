@@ -67,3 +67,6 @@ fabric.properties
 
 # Maven
 target/
+
+# aws sam
+.aws-sam
