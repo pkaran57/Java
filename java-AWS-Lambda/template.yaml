@@ -22,7 +22,7 @@ Globals:
 # AWS::Serverless::SimpleTable - creates a DynamoDB table with a single attribute primary key. It is useful when data only needs to be accessed via a primary key. To use the more advanced functionality of DynamoDB, use an AWS::DynamoDB::Table resource instead.
 # AWS::Serverless::LayerVersion - Creates a Lambda LayerVersion that contains library or runtime code needed by a Lambda Function. When a Serverless LayerVersion is transformed, SAM also transforms the logical id of the resource so that old LayerVersions are not automatically deleted by CloudFormation when the resource is updated.
 Resources:
-  HelloWorldFunction:
+  IntAdder:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       FunctionName: IntAdder
@@ -33,6 +33,13 @@ Resources:
         Variables:
           PARAM1: VALUE
       Tracing: Active
+  StreamHandler:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      FunctionName: StreamHandler
+      Role: arn:aws:iam::399897631251:role/lambda-custom-role
+      CodeUri: HelloWorldFunction
+      Handler: helloworld.StreamHandler::handleRequest
       # Event source types: https://github.com/aws/serverless-application-model/blob/master/versions/2016-10-31.md#event-source-types
 #      Events:
 #        HelloWorld:
