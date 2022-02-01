@@ -19,6 +19,7 @@
     <modules>
         <module>java-lang</module>
         <module>spring-boot</module>
+        <module>spring-boot-reactive</module>
         <module>spring</module>
         <module>java-aws</module>
         <module>java-sandbox</module>
