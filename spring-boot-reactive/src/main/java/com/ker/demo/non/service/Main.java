@@ -31,6 +31,8 @@ public class Main {
         ints.subscribe(i -> System.out.println(i),
                 error -> System.err.println("Error " + error),
                 () -> System.out.println("Done"));
+
+        Mono.just("test").subscribe(str -> System.out.println("From mono subscriber - " + str));
     }
 
     private static void creatingMonoAndFlux() {
