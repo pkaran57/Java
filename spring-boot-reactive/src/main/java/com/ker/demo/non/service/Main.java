@@ -12,6 +12,41 @@ public class Main {
         creatingMonoAndFlux();
         subscribe();
         generateSequenceSynchronousSink();
+        errorHandling();
+
+        // doFinally - is about side-effects that you want to be executed whenever the sequence terminates (with onComplete or onError) or is cancelled.
+        // It gives you a hint as to what kind of termination triggered the side-effect.
+        // The following example shows how to use doFinally: see https://projectreactor.io/docs/core/release/reference/#_using_resources_and_the_finally_block
+
+        System.out.println("Done!");
+    }
+
+    private static void errorHandling() {
+        // onErrorReturn
+        Mono.just(0).map(value -> 100 / value).onErrorReturn(999).subscribe();
+
+        // error callback
+        Flux<Integer> s = Flux.range(0, 10).map(v -> 1 / v);
+        s.subscribe(value -> System.out.println("RECEIVED " + value),
+                error -> System.err.println("CAUGHT by error callback function: " + error)
+        );
+
+        // onErrorResume - This would be the equivalent of “Catch and execute an alternative path with a fallback method”.
+        String value = Mono.just(0)
+                .map(k -> 1 / k)
+                .onErrorResume(error -> {
+                    System.err.println("caught the following error in onErrorResume: " + error);
+                    //return Mono.error(error);
+                    return Mono.just(99);
+                })
+                .map(i -> Integer.toString(i))
+                .block();
+
+        // doOnError - can be used to log error
+        Flux<Integer> flux =
+                Flux.just(0)
+                        .map(k -> 1 / k)
+                        .doOnError(e -> System.err.println("caught the following error in doOnError: " + e));
     }
 
     private static void generateSequenceSynchronousSink() {
