@@ -8,6 +8,11 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public class Main {
 
+    /**
+     * Notes on async reactive programming and Reactor (open in chrome)- obsidian://open?vault=Obsidian%20Vault&file=Langauges%2FJava%2FReactor
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         creatingMonoAndFlux();
         subscribe();
@@ -98,11 +103,23 @@ public class Main {
     }
 
     private static void creatingMonoAndFlux() {
-        // Mono, an Asynchronous 0-1 Result
+
+        /**
+         * Mono, an Asynchronous 0-1 Result
+         *
+         * A Mono is a specialized Publisher that emits at most one item via the onNext signal then terminates with an
+         * onComplete signal (successful Mono, with or without value), or only emits a single onError signal (failed Mono).
+         */
+
         Mono<Object> emptyMono = Mono.empty();
         Mono<String> monoFromJust = Mono.just("test");
 
-        // Flux, an Asynchronous Sequence of 0-N Items
+        /**
+         * Flux, an Asynchronous Sequence of 0-N Items
+         *
+         * A Flux is a standard Publisher that represents an asynchronous sequence of 0 to N emitted items, optionally
+         * terminated by either a completion signal or an error.
+         */
         Flux<String> empty = Flux.empty();
         Flux<String> fromJust = Flux.just("foo", "bar", "foobar");
         Flux<String> fromIterable = Flux.fromIterable(List.of("foo", "bar", "foobar"));
